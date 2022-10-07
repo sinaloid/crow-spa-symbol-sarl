@@ -76,7 +76,7 @@ const ProductCard = ({ data, idx }) => {
                 <small>{/*Intl.NumberFormat().format(data.prix)+*/" 5 000 000 "}FCFA</small> 
               </span><br />
               <span className="text-accent">
-                <small>{/*Intl.NumberFormat().format(data.prix)+*/" Sur 8 000 000 "}FCFA</small>
+                <small>{/*Intl.NumberFormat().format(data.prix)+*/ " Sur 8 000 000 "}FCFA</small>
               </span>
             </div>
             <div className="star-rating py-2">
