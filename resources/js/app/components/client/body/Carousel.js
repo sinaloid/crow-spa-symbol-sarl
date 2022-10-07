@@ -38,7 +38,7 @@ const Carousel = () => {
       <div className="carousel-inner">
         <div className="carousel-item">
           
-          <img className="bd-placeholder-img" width="100%" height="auto" src={banner2} alt="" />
+          <img className="bd-placeholder-img" width="auto" height="10px" src={banner2} alt="" />
           <div className="container">
             {/*<div className="carousel-caption text-start">
               <h1 className="display-1">Example headline.</h1>
@@ -55,7 +55,7 @@ const Carousel = () => {
           </div>
         </div>
         <div className="carousel-item active">
-        <img className="bd-placeholder-img" width="100%" height="auto" src={banner1} alt="" />
+        <img className="bd-placeholder-img" width="auto" height="10px" src={banner1} alt="" />
           
 
           <div className="container">
@@ -74,7 +74,7 @@ const Carousel = () => {
           </div>
         </div>
         <div className="carousel-item">
-          <img className="bd-placeholder-img" width="100%" height="auto" src={banner3} alt="" />
+          <img className="bd-placeholder-img" width="auto" height="100px" src={banner3} alt="" />
           <div className="container">
             {/*<div className="carousel-caption text-end">
               <h1 className="display-1">One more for good measure.</h1>

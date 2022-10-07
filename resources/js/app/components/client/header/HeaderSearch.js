@@ -27,9 +27,9 @@ const HeaderSearch = () => {
                     />
                 </form>
                 
-                <div className="col-2 position-relative d-flex align-items-center mb-3 mb-lg-0 me-lg-auto ml-auto">
+                {/*<div className="col-2 position-relative d-flex align-items-center mb-3 mb-lg-0 me-lg-auto ml-auto">
                     <Panier classe="position-absolute end-0" size="fa-2xl" />
-                </div>
+                </div>*/}
             </div>
         </header>
     );

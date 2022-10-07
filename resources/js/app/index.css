@@ -258,6 +258,31 @@ important
 .delete-overflow{
   word-wrap: break-word !important;
 }
+.dropdown-menu {
+  width: 200px !important;
+ /* height: 400px !important;*/
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+  
+}
+
+.circle{
+  background-color: var(--primary-color);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.9rem;
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  border-radius: 50%;
+
+}
+
 
 @media screen and (max-width: 768px) {
 

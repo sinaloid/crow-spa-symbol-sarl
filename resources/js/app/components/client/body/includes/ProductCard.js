@@ -35,58 +35,66 @@ const ProductCard = ({ data, idx }) => {
   } 
 
   return (
-    <div key={idx} className="col">
+    <div key={idx} className="col" style={{'lineHeight':'125%'}}>
       <div className="card shadow-sm">
-        <img
+        
+        <div className="card-body">
+          <Link to="" className="text-muted categorie-name">
+            {/*data.categorie*/ "Nom de la catégorie"}
+          </Link>
+          <h3 className="text-primary">
+            <Link to="" className="produit-name">
+            {/*data.libelle*/"Nom du projet"}
+            </Link>
+          </h3>
+          <img
           className=""
           width={"100%"}
-          src={urlImg+""+data.image}
-          //src={`https://source.unsplash.com/random/800x600/?product=${data+idx}`}
+          //src={urlImg+""+data.image}
+          src={`https://source.unsplash.com/random/800x600/?product=${data}`}
           alt={data.image}
           loading="lazy"
         />
-        <div className="card-body">
-          <Link to="" className="text-muted categorie-name">
-            {data.categorie}
-          </Link>
-          <h3>
-            <Link to="" className="produit-name">
-            {data.libelle}
-            </Link>
-          </h3>
+        <div className="d-flex justify-content-between">
+            <div className="product-price py-2 text-primary">
+            106 Questions
+              {/*<span className="text-accent text-bold">
+                <small></small>
+              </span>*/}
+            </div>
+            <div className="star-rating py-2">
+              25 contributions
+            </div>
+          </div>
+          <p>
+            Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+            There is no one who...
+          </p>
           <div className="d-flex justify-content-between">
             <div className="product-price py-2">
               <span className="text-accent text-bold">
-                {Intl.NumberFormat().format(data.prix)+" "}<small>FCFA</small>
+                <small>{/*Intl.NumberFormat().format(data.prix)+*/" 5 000 000 "}FCFA</small> 
+              </span><br />
+              <span className="text-accent">
+                <small>{/*Intl.NumberFormat().format(data.prix)+*/" Sur 8 000 000 "}FCFA</small>
               </span>
             </div>
             <div className="star-rating py-2">
-              <i className="fa-solid fa-star" style={{ color: "#fea569" }}></i>
-              <i className="fa-solid fa-star" style={{ color: "#fea569" }}></i>
-              <i className="fa-solid fa-star" style={{ color: "#fea569" }}></i>
-              <i className="fa-solid fa-star" style={{ color: "#fea569" }}></i>
-              <i
-                className="fa-regular fa-star-half-stroke"
-                style={{ color: "#fea569" }}
-              ></i>
+              15 jours <br />
+              restant
             </div>
           </div>
           <div className="d-flex justify-content-between align-items-center ">
-            <div className="btn-group pay">
-              <Link data = {data} to={{
-                pathname:`/produit/${data.slug}`,
-                state: data
-                }} className="btn btn-sm btn-afdefis-primary">
-              Voir
-              </Link>
-              <button type="button" className="btn btn-sm btn-afdefis" onClick={()=>{addProduit()}}>
-                <i className="fa-solid fa-cart-shopping fa-xl mx-1"></i>
-                Ajouter
+          <button type="button" className="btn btn-sm btn-afdefis star-rating" onClick={()=>{addProduit()}}>
+                Investir
               </button>
-            </div>
           </div>
         </div>
+        <div className="progress rounded-0">
+          <div className="progress-bar progress-bar-striped progress-bar-animated bg-primary" style={{'width':'70%'}}>70%</div>
+        </div>
       </div>
+       
     </div>
   );
 };

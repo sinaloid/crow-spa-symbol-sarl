@@ -60,20 +60,6 @@ const HeaderNavBar = () => {
                                     </span>
                                 </Link>
                             </li>
-                            <li className="nav-item">
-                                <Link
-                                    to={url.faqs}
-                                    className="nav-link link link-dark px-2"
-                                >
-                                    <span
-                                        className="py-1"
-                                        data-bs-toggle="collapse"
-                                        data-bs-target=".navbar-collapse.show"
-                                    >
-                                        FAQs
-                                    </span>
-                                </Link>
-                            </li>
                             <li className="nav-item ">
                                 <Link
                                     to={url.produits}
@@ -84,9 +70,71 @@ const HeaderNavBar = () => {
                                         data-bs-toggle="collapse"
                                         data-bs-target=".navbar-collapse.show"
                                     >
-                                        Produits
+                                        Projets
                                     </span>
                                 </Link>
+                            </li>
+                            <li className="nav-item ">
+                                <a
+                                    href="https://market.africadefis.com"
+                                    className="nav-link link link-dark px-2"
+                                >
+                                    <span
+                                        className="py-1"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target=".navbar-collapse.show"
+                                    >
+                                        Market
+                                    </span>
+                                </a>
+                            </li>
+                            <li className="nav-item dropdown">
+                                <Link
+                                    to={url.faqs}
+                                    className="nav-link dropdown-toggle link link-dark px-2"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                >
+                                    <span
+                                        className="py-1"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target=".navbar-collapse.show"
+                                    >
+                                        FAQs
+                                    </span>
+                                </Link>
+                                <ul className="dropdown-menu">
+                                    <li>
+                                        <Link
+                                            to={url.home}
+                                            className="nav-link link link-dark px-2"
+                                            aria-current="page"
+                                        >
+                                            <span
+                                                className="py-1"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target=".navbar-collapse.show"
+                                            >
+                                                Investisseurs
+                                            </span>
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            to={url.home}
+                                            className="nav-link link link-dark px-2"
+                                            aria-current="page"
+                                        >
+                                            <span
+                                                className="py-1"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target=".navbar-collapse.show"
+                                            >
+                                                Porteurs de projet
+                                            </span>
+                                        </Link>
+                                    </li>
+                                </ul>
                             </li>
                             <li className="nav-item">
                                 <Link
@@ -191,7 +239,6 @@ const HeaderNavBar = () => {
                     </div>
                 </div>
             </nav>
-            
         </div>
     );
 };

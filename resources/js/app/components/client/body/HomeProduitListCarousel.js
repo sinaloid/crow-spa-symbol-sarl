@@ -45,7 +45,7 @@ const HomeProduitListCarousel = ({ datas, title }) => {
                         className="btn btn-outline-accent btn-sm txt-white-hover"
                         to={url.produits}
                     >
-                        Plus de products
+                        Plus de projets
                         <i className="ci-arrow-right ms-1 me-n1"></i>
                     </Link>
                 </div>
@@ -59,7 +59,8 @@ const HomeProduitListCarousel = ({ datas, title }) => {
                         nav
                         {...options}
                     >
-                        {datas.map((data, idx) => {
+                        {[...Array(11).keys()].map((data, idx) => {
+                         //datas.map((data, idx) => {
                             return (
                                 <ProductCard key={idx} idx={idx} data={data} />
                             );
