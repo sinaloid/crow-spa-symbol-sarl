@@ -7,7 +7,7 @@ const URLIMG = 'https://africadefis.herokuapp.com/uploads/'
 //const URLIMG = 'http://market.africadefis.com/uploads/'
 //const URLIMG2 = 'http://127.0.0.1:8000/uploads/'
 
-export const urlImg = URLIMG2
+export const urlImg = URLIMG
 
 const apiClient = axios.create({
     baseURL: URL2,
