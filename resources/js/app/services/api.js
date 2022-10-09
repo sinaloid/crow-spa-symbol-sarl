@@ -10,7 +10,7 @@ const URLIMG = 'https://africadefis.herokuapp.com/uploads/'
 export const urlImg = URLIMG
 
 const apiClient = axios.create({
-    baseURL: URL2,
+    baseURL: URL,
     withCredentials: true,
     headers: {'Accept':'application/json'},
 });
