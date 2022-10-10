@@ -9,6 +9,7 @@ import DownloadApp from "./DownloadApp";
 import HomeProduitList from "./HomeProduitList";
 import HomeProduitListCarousel from "./HomeProduitListCarousel";
 import HowIsWork from "./HowIsWork";
+import HowIsWorkVideo from "./HowIsWorkVideo";
 import Brand from "./includes/Brand";
 import NewProduct from "./NewProduct";
 import Recommandation from "./Recommadation";
@@ -53,6 +54,7 @@ const Home = () => {
                 </div>
             </div>
 
+            <HowIsWorkVideo />
             <HowIsWork />
 
             {datas.reduction != [] && (
@@ -77,12 +79,12 @@ const Home = () => {
                         title={"Découvrir le manifesto Ulule"}
                     />
                 )}
-                {/*datas.nouveau != [] && (
-                    <HomeProduitList
+                {datas.nouveau != [] && (
+                    <BestSeller
                         datas={datas.nouveau}
                         title={"Recevez notre newsletter !"}
                     />
-                )*/}
+                )}
             </div>
             {!appType.mobile && <DownloadApp />}
         </>

@@ -29,12 +29,12 @@ const Footer = () => {
                         </small>
                     </div>
                     <div className="col-6 col-md-3">
-                        <h5>Africadefis market</h5>
+                        <h5>Africadefis crowdfunding</h5>
                         <ul className="list-unstyled text-small">
                             <li>
                                 <span className="link-secondary">
                                     Une plateforme conçue pour répondre à vos
-                                    besoins de commerce en ligne.
+                                    besoins de financement en ligne.
                                 </span>
                             </li>
                             <li>
@@ -61,36 +61,37 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className="col-6 col-md">
-                        <h5>Catégories</h5>
+                        <h5>Liens Utiles</h5>
                         <ul className="list-unstyled text-small">
                             <li>
                                 <Link to="#" className="link-secondary">
-                                    Électronique
+                                Tous les projets
                                 </Link>
                             </li>
                             <li>
                                 <Link to="#" className="link-secondary">
-                                    Autos et motos
+                                    Comment investir?
                                 </Link>
                             </li>
                             <li>
                                 <Link to="#" className="link-secondary">
-                                    Ordinateurs
+                                    Partenariat
                                 </Link>
                             </li>
                             <li>
                                 <Link to="#" className="link-secondary">
-                                    bureau et sécurité
+                                    FAQ
                                 </Link>
                             </li>
                             <li>
                                 <Link to="#" className="link-secondary">
-                                    Téléphones et télécommunications
+                                    Le concept
                                 </Link>
                             </li>
+                            
                             <li>
                                 <Link to="#" className="link-secondary">
-                                    Sports et loisirs
+                                L'équipe
                                 </Link>
                             </li>
                         </ul>
@@ -127,36 +128,31 @@ const Footer = () => {
                     </div>
 
                     <div className="col-6 col-md">
-                        <h5>Service</h5>
+                        <h5>Services</h5>
                         <ul className="list-unstyled text-small">
+                            <li>
+                                <Link to="#" className="link-secondary">
+                                    Inscrivez-vous
+                                </Link>
+                            </li>
                             <li>
                                 <Link to="#" className="link-secondary">
                                     Mon compte
                                 </Link>
                             </li>
                             <li>
-                                <a className="link-secondary" href="#">
-                                    Locations
-                                </a>
-                            </li>
-                            <li>
                                 <Link to="#" className="link-secondary">
-                                    Mes commandes
+                                    Mes investissements
                                 </Link>
                             </li>
                             <li>
                                 <Link to="#" className="link-secondary">
-                                    Mes produits
+                                    Mes projets
                                 </Link>
                             </li>
                             <li>
                                 <Link to="#" className="link-secondary">
-                                    Mes demandes
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="#" className="link-secondary">
-                                    Aide
+                                    Besoin d'assistance
                                 </Link>
                             </li>
                         </ul>

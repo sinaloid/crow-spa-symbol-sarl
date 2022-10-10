@@ -226,7 +226,7 @@ const Produit = () => {
                 </div>
 
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
-                    {datas.map((data, idx) => {
+                    {[...Array(11).keys()].map((data, idx) => {
                         return (
                           <ProductCard key={idx} idx={idx} data={data} />
                         );

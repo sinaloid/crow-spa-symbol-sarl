@@ -27,8 +27,8 @@ const HomeProduitList = ({ datas = [], title }) => {
           </div>*/}
             <div className="row">
                 <div className="col-12 col-md-10 mx-auto">
-                    <div className="row">
-                        <div className="col-6">
+                    <div className="row bg-white pt-3">
+                        <div className="col-12 col-md-6 mb-3">
                             <img
                                 className=""
                                 width={"100%"}
@@ -38,7 +38,7 @@ const HomeProduitList = ({ datas = [], title }) => {
                                 loading="lazy"
                             />
                         </div>
-                        <div className="col-6">
+                        <div className="col-12 col-md-6 mb-3">
                           <h2 className="text-secondary">On vous aide à passer de l'idée à l'action</h2>
                           <p>
                           Lorem Ipsum is simply dummy text of the printing and 

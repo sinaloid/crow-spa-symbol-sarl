@@ -44,8 +44,8 @@ const Brand = ({ datas = [] }) => {
 
             <div className="row">
                 <div className="col-12 col-md-10 mx-auto">
-                    <div className="row">
-                        <div className="col-6">
+                    <div className="row bg-white pt-3">
+                        <div className="col-12 col-md-6 mb-3">
                             <img
                                 className=""
                                 width={"100%"}
@@ -55,7 +55,7 @@ const Brand = ({ datas = [] }) => {
                                 loading="lazy"
                             />
                         </div>
-                        <div className="col-6">
+                        <div className="col-12 col-md-6 mb-3">
                           <h2 className="text-secondary">Donnez du pouvoir à votre argent en finançant des
                         projets innovants</h2>
                           <p>
