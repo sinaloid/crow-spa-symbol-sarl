@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../../../context/context";
 import { Link, useParams } from "react-router-dom";
+import { CKEditor } from "ckeditor4-react";
 import apiClient, { urlImg } from "../../../../services/api";
 import url from "../../../../url";
 
@@ -393,7 +394,19 @@ const ProductDetail = () => {
                                 <div className="row">
                                     <div className="col-12">
                                         <p>
-                                            <Link to="/connexion" className="link-click text-bold">Connectez vous</Link> ou <Link to="/inscription" className="link-click text-bold">inscrivez vous </Link>
+                                            <Link
+                                                to="/connexion"
+                                                className="link-click text-bold"
+                                            >
+                                                Connectez vous
+                                            </Link>{" "}
+                                            ou{" "}
+                                            <Link
+                                                to="/inscription"
+                                                className="link-click text-bold"
+                                            >
+                                                inscrivez vous{" "}
+                                            </Link>
                                             pour pouvoir faire des commentaires.
                                         </p>
                                         <div className="card my-2">
@@ -424,8 +437,16 @@ const ProductDetail = () => {
                                                         labore! Accusamus
                                                     </p>
                                                     <div>
-                                                        <span><i class="fa-regular fa-clock"></i> 1h </span> |
-                                                        <span> <i class="fa-sharp fa-regular fa-comment"></i> Repondre </span>
+                                                        <span>
+                                                            <i class="fa-regular fa-clock"></i>{" "}
+                                                            1h{" "}
+                                                        </span>{" "}
+                                                        |
+                                                        <span>
+                                                            {" "}
+                                                            <i class="fa-sharp fa-regular fa-comment"></i>{" "}
+                                                            Repondre{" "}
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -458,11 +479,31 @@ const ProductDetail = () => {
                                                         labore! Accusamus
                                                     </p>
                                                     <div>
-                                                        <span><i class="fa-regular fa-clock"></i> 1h </span> |
-                                                        <span> <i class="fa-sharp fa-regular fa-comment"></i> Repondre </span>
+                                                        <span>
+                                                            <i class="fa-regular fa-clock"></i>{" "}
+                                                            1h{" "}
+                                                        </span>{" "}
+                                                        |
+                                                        <span>
+                                                            {" "}
+                                                            <i class="fa-sharp fa-regular fa-comment"></i>{" "}
+                                                            Repondre{" "}
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-12 mt-4">
+                                        <hr/>
+                                        <CKEditor
+                                            initData="<p>Entrez votre commentaire !</p>"
+                                            onInstanceReady={() => {
+                                                /*alert("Editor is ready!");*/
+                                            }}
+                                        />
+                                        <div className="my-2 d-flex justify-content-center">
+                                            <button className="btn btn-sm btn-afdefis">Commenter</button>
                                         </div>
                                     </div>
                                 </div>
