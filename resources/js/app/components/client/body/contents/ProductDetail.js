@@ -7,7 +7,7 @@ import url from "../../../../url";
 const ProductDetail = () => {
     const cartCtx = useContext(AppContext);
     const { cart, onCartChange } = cartCtx;
-    const {id} = useParams()
+    const { id } = useParams();
 
     const [data, setDatas] = useState([]);
     useEffect(() => {
@@ -29,117 +29,353 @@ const ProductDetail = () => {
             });
     }, []);
 
-    
-    
-    let tabProduit = []
-    let findItem = false
+    let tabProduit = [];
+    let findItem = false;
     const prod = {
-      id: data.slug,
-      produit: data.libelle,
-      prix: data.prix,
-      quantite: 1
-    }
+        id: data.slug,
+        produit: data.libelle,
+        prix: data.prix,
+        quantite: 1,
+    };
     //console.log(cart.content)
     const addProduit = () => {
-  
-      tabProduit = cart.content.map((item) => {
-        if(data.slug == item.id){
-          item.quantite++
-          findItem = true
+        tabProduit = cart.content.map((item) => {
+            if (data.slug == item.id) {
+                item.quantite++;
+                findItem = true;
+            }
+            return item;
+        });
+
+        //console.log(tabProduit)
+        if (!findItem) {
+            onCartChange({
+                content: [...cart.content, prod],
+                compteur: cart.compteur + 1,
+            });
+        } else {
+            onCartChange({ content: tabProduit, compteur: cart.compteur + 1 });
         }
-        return item
-      })
-  
-      //console.log(tabProduit)
-      if(!findItem){
-        onCartChange({content:[...cart.content,prod],compteur: cart.compteur + 1})
-      }else{
-        onCartChange({content:tabProduit, compteur: cart.compteur + 1})
-      }
-    } 
+    };
     return (
         <div className="container mt-5 mb-5">
             <div className="row d-flex justify-content-center">
                 <div className="col-md-10">
                     <div className="card">
-                        <div className="row">
-                            <div className="col-md-6">
-                                <div className="images p-3">
-                                    <div className="text-center p-4">
-                                        <img
-                                            id="main-image"
-                                            src={urlImg+""+data.image}
-                                            width="250"
-                                        />
-                                    </div>
-                                    {
-                                        /**
-                                         * <div className="thumbnail text-center">
-                                        <img
-                                            onclick="change_image(this)"
-                                            src="https://i.imgur.com/Rx7uKd0.jpg"
-                                            width="70"
-                                        />
-                                        <img
-                                            onclick="change_image(this)"
-                                            src="https://i.imgur.com/Dhebu4F.jpg"
-                                            width="70"
-                                        />
-                                    </div>
-                                         */
-                                    }
-                                </div>
+                        <div className="row p-4 pb-3">
+                            <div className="col-12">
+                                <h1 className="text-center">Nom du projet</h1>
+                                <p className="text-center mt-1">Slogan....</p>
                             </div>
-                            <div className="col-md-6">
-                                <div className="product p-4">
+                            <div className="col-12 col-md-8">
+                                <iframe
+                                    width="420"
+                                    height="315"
+                                    className="w-100"
+                                    src="https://www.youtube.com/embed/tgbNymZ7vqY"
+                                ></iframe>
+                            </div>
+                            <div className="col-12 col-md-4">
+                                <div className="product">
                                     <div className="d-flex justify-content-between align-items-center">
                                         <div className="d-flex align-items-center">
-                                            <i className="fa fa-long-arrow-left"></i>
-                                            <Link to={url.home} className="mx-1 link" style={{textDecoration:'none'}}>Retour</Link>
+                                            <button className="btn btn-afdefis">
+                                                Suivre
+                                                <i
+                                                    className="fa fa-heart fa-2xl mx-1"
+                                                    style={{ color: "#fff" }}
+                                                ></i>
+                                            </button>
                                         </div>
-                                        <i 
-                                            data-bs-toggle="offcanvas"
-                                            data-bs-target="#offcanvasRight"
-                                            aria-controls="offcanvasRight"
-                                            className="fa-solid fa-shopping-cart text-muted" style={{ color: '#3292f0' }}></i>
-                                            
+                                        <button className="btn btn-afdefis">
+                                            Partager
+                                            <i
+                                                className="fa fa-share-alt fa-2xl mx-1"
+                                                style={{ color: "#fff" }}
+                                            ></i>
+                                        </button>
+                                    </div>
+                                    <div
+                                        className="d-flex justify-content-between my-2 align-items-center"
+                                        style={{ lineHeight: "140%" }}
+                                    >
+                                        <div className="d-flex align-items-center">
+                                            51
+                                            <br /> contributions
+                                        </div>
+                                        11 <br />
+                                        jours restants
+                                    </div>
+                                    <div className="progress rounded-0">
+                                        <div
+                                            className="progress-bar progress-bar-striped progress-bar-animated bg-primary"
+                                            style={{ width: "70%" }}
+                                        >
+                                            70%
+                                        </div>
                                     </div>
                                     <div className="mt-4 mb-3">
                                         <span className="text-uppercase text-muted brand">
-                                        {data.categorie}
+                                            {data.categorie}
                                         </span>
                                         <h5 className="text-uppercase">
                                             {data.libelle}
                                         </h5>
                                         <div className="price d-flex flex-row align-items-center">
-                                            <div className="ml-2">
+                                            <div
+                                                className="ml-2"
+                                                style={{ lineHeight: "140%" }}
+                                            >
                                                 <small className="dis-price">
-                                                {Intl.NumberFormat().format(data.prix) + " FCFA"}
+                                                    {
+                                                        /*Intl.NumberFormat().format(
+                                                        data.prix
+                                                    )*/ "5 000 000" + " FCFA"
+                                                    }
+                                                    <br />
+                                                    sur 8 000 000 FCFA
                                                 </small>
                                                 <br />
-                                                {
-                                                    (data.reduction) && <span>{data.reduction + "% de reduction"}</span>
-                                                }
+                                                {data.reduction && (
+                                                    <span>
+                                                        {data.reduction +
+                                                            "% de reduction"}
+                                                    </span>
+                                                )}
                                             </div>
                                         </div>
                                     </div>
-                                    <p className="about">
-                                        {data.description}
-                                    </p>
-                                    
+                                    <p className="about">{data.description}</p>
+
                                     <div className="cart mt-4 align-items-center">
                                         <button
-                                            className="btn btn-afdefis-secondary  text-uppercase mr-2 px-4"
+                                            className="btn btn-afdefis-secondary  text-uppercase mr-2 mb-4 px-4 w-100"
                                             onClick={() => {
                                                 addProduit();
                                             }}
                                         >
-                                            Ajouter au panier
+                                            Investir
                                         </button>
-                                        <i className="fa fa-heart text-muted mx-1"></i>
-                                        <i className="fa fa-share-alt text-muted mx-1"></i>
+                                        <br />
+                                        <i className="fa fa-long-arrow-left"></i>
+                                        <Link
+                                            to={url.home}
+                                            className="mx-1 link"
+                                            style={{
+                                                textDecoration: "none",
+                                            }}
+                                        >
+                                            Retour
+                                        </Link>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="card1 my-4">
+                        <ul className="nav nav-tabs">
+                            <li className="nav-item">
+                                <a
+                                    className="nav-link active link link-dark"
+                                    data-bs-toggle="tab"
+                                    href="#projet"
+                                >
+                                    <span>Projet</span>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a
+                                    className="nav-link link link-dark"
+                                    data-bs-toggle="tab"
+                                    href="#contreparties"
+                                >
+                                    <span>Contreparties</span>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a
+                                    className="nav-link link link-dark"
+                                    data-bs-toggle="tab"
+                                    href="#faqs"
+                                >
+                                    <span>FAQs</span>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a
+                                    className="nav-link link link-dark"
+                                    data-bs-toggle="tab"
+                                    href="#infos"
+                                >
+                                    <span>Infos</span>
+                                </a>
+                            </li>
+                            <li className="nav-item">
+                                <a
+                                    className="nav-link link link-dark"
+                                    data-bs-toggle="tab"
+                                    href="#commentaires"
+                                >
+                                    <span>Commentaires</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <div className="tab-content py-4">
+                            <div
+                                className="tab-pane container active"
+                                id="projet"
+                            >
+                                {/*<h2 className="text-center my-5">Nom du projet</h2>*/}
+                                <ul>
+                                    <li>
+                                        <span className="text-bold">
+                                            À propos
+                                        </span>
+                                        <p>
+                                            Lorem ipsum dolor sit amet
+                                            consectetur adipisicing elit.
+                                            Adipisci quaerat architecto illo
+                                            quis, eveniet atque officia
+                                            blanditiis ipsa rerum, accusantium
+                                            quam voluptatum cumque placeat odio
+                                            velit labore! Accusamus, itaque
+                                            impedit. Lorem ipsum dolor sit amet
+                                            consectetur adipisicing elit.
+                                            Adipisci quaerat architecto illo
+                                            quis, eveniet atque officia
+                                            blanditiis ipsa rerum, accusantium
+                                            quam voluptatum cumque placeat odio
+                                            velit labore! Accusamus, itaque
+                                            impedit. Lorem ipsum dolor sit amet
+                                            consectetur adipisicing elit.
+                                            Adipisci quaerat architecto illo
+                                            quis, eveniet atque officia
+                                            blanditiis ipsa rerum, accusantium
+                                            quam voluptatum cumque placeat odio
+                                            velit labore! Accusamus, itaque
+                                            impedit. Lorem ipsum dolor sit amet
+                                            consectetur adipisicing elit.
+                                            Adipisci quaerat architecto illo
+                                            quis, eveniet atque officia
+                                            blanditiis ipsa rerum, accusantium
+                                            quam voluptatum cumque placeat odio
+                                            velit labore! Accusamus, itaque
+                                            impedit.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <span className="text-bold">
+                                            Comment le financement sera-t-il
+                                            utilisé?
+                                        </span>
+                                        <p>
+                                            Lorem ipsum dolor sit amet
+                                            consectetur adipisicing elit.
+                                            Adipisci quaerat architecto illo
+                                            quis, eveniet atque officia
+                                            blanditiis ipsa rerum, accusantium
+                                            quam voluptatum cumque placeat odio
+                                            velit labore! Accusamus, itaque
+                                            impedit. Lorem ipsum dolor sit amet
+                                            consectetur adipisicing elit.
+                                            Adipisci quaerat architecto illo
+                                            quis, eveniet atque officia
+                                            blanditiis ipsa rerum, accusantium
+                                            quam voluptatum cumque placeat odio
+                                            velit labore! Accusamus, itaque
+                                            impedit. Lorem ipsum dolor sit amet
+                                            consectetur adipisicing elit.
+                                            Adipisci quaerat architecto illo
+                                            quis, eveniet atque officia
+                                            blanditiis ipsa rerum, accusantium
+                                            quam voluptatum cumque placeat odio
+                                            velit labore! Accusamus, itaque
+                                            impedit. Lorem ipsum dolor sit amet
+                                            consectetur adipisicing elit.
+                                            Adipisci quaerat architecto illo
+                                            quis, eveniet atque officia
+                                            blanditiis ipsa rerum, accusantium
+                                            quam voluptatum cumque placeat odio
+                                            velit labore! Accusamus, itaque
+                                            impedit.
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <span className="text-bold">
+                                            Le(s) porteur(s) de projet
+                                        </span>
+                                        <div className="container-fluid">
+                                            <div className="row">
+                                                <div className="col-12 col-md-6">
+                                                    <p>
+                                    
+                                                        blanditiis ipsa rerum,
+                                                        accusantium quam
+                                                        voluptatum cumque
+                                                        placeat odio velit
+                                                        labore! Accusamus,
+                                                        itaque impedit. Lorem
+                                                        ipsum dolor sit amet
+                                                        consectetur adipisicing
+                                                        elit. Adipisci quaerat
+                                                        architecto illo quis,
+                                                        eveniet atque officia
+                                                        blanditiis ipsa rerum,
+                                                        accusantium quam
+                                                        voluptatum cumque
+                                                        placeat odio velit
+                                                        labore! Accusamus,
+                                                        itaque impedit. Lorem
+                                                        ipsum dolor sit amet
+                                                        consectetur adipisicing
+                                                        elit. Adipisci quaerat
+                                                        architecto illo quis,
+                                                        eveniet atque officia
+                                                        blanditiis ipsa rerum,
+                                                        accusantium quam
+                                                        voluptatum cumque
+                                                        placeat odio velit
+                                                        labore! Accusamus,
+                                                        itaque impedit. Lorem
+                                                        ipsum dolor sit amet
+                                                        consectetur adipisicing
+                                                        elit. Adipisci quaerat
+                                                        architecto illo quis,
+                                                        eveniet atque officia
+                                                        blanditiis ipsa rerum,
+                                                        accusantium quam
+                                                        voluptatum cumque
+                                                        placeat odio velit
+                                                        labore! Accusamus,
+                                                        itaque impedit.
+                                                    </p>
+                                                </div>
+                                                <div className="col-12 col-md-6">
+                                                    <img className="w-100" src="https://source.unsplash.com/random/800x600/?product=1" alt=""/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div
+                                className="tab-pane container fade"
+                                id="contreparties"
+                            >
+                                Contreparties
+                            </div>
+                            <div className="tab-pane container fade" id="faqs">
+                                faqs
+                            </div>
+                            <div className="tab-pane container fade" id="infos">
+                                infos
+                            </div>
+                            <div
+                                className="tab-pane container fade"
+                                id="commentaires"
+                            >
+                                Commentaires
                             </div>
                         </div>
                     </div>
