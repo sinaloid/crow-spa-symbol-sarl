@@ -106,6 +106,14 @@ const ProductDetail = () => {
                                         11 <br />
                                         jours restants
                                     </div>
+                                    <hr />
+                                    <small className="dis-price text-bold">
+                                        {
+                                            /*Intl.NumberFormat().format(
+                                                        data.prix
+                                                    )*/ "5 000 000" + " FCFA"
+                                        }
+                                    </small>
                                     <div className="progress rounded-0">
                                         <div
                                             className="progress-bar progress-bar-striped progress-bar-animated bg-primary"
@@ -114,6 +122,17 @@ const ProductDetail = () => {
                                             70%
                                         </div>
                                     </div>
+                                    <small className="dis-price">
+                                        {
+                                            /*Intl.NumberFormat().format(
+                                                        data.prix
+                                                    )*/ "70% de "
+                                        }
+                                    </small>
+                                    <small className="text-bold">
+                                        8 000 000 FCFA
+                                    </small>
+
                                     <div className="mt-4 mb-3">
                                         <span className="text-uppercase text-muted brand">
                                             {data.categorie}
@@ -121,20 +140,13 @@ const ProductDetail = () => {
                                         <h5 className="text-uppercase">
                                             {data.libelle}
                                         </h5>
-                                        <div className="price d-flex flex-row align-items-center">
+                                        {/*<div className="price d-flex flex-row align-items-center">
                                             <div
                                                 className="ml-2"
-                                                style={{ lineHeight: "140%" }}
                                             >
-                                                <small className="dis-price">
-                                                    {
-                                                        /*Intl.NumberFormat().format(
-                                                        data.prix
-                                                    )*/ "5 000 000" + " FCFA"
-                                                    }
-                                                    <br />
-                                                    sur 8 000 000 FCFA
-                                                </small>
+                                                
+                                                70% de 8 000 000 FCFA
+
                                                 <br />
                                                 {data.reduction && (
                                                     <span>
@@ -143,7 +155,7 @@ const ProductDetail = () => {
                                                     </span>
                                                 )}
                                             </div>
-                                        </div>
+                                        </div>*/}
                                     </div>
                                     <p className="about">{data.description}</p>
 
@@ -309,7 +321,6 @@ const ProductDetail = () => {
                                             <div className="row">
                                                 <div className="col-12 col-md-6">
                                                     <p>
-                                    
                                                         blanditiis ipsa rerum,
                                                         accusantium quam
                                                         voluptatum cumque
@@ -352,7 +363,11 @@ const ProductDetail = () => {
                                                     </p>
                                                 </div>
                                                 <div className="col-12 col-md-6">
-                                                    <img className="w-100" src="https://source.unsplash.com/random/800x600/?product=1" alt=""/>
+                                                    <img
+                                                        className="w-100"
+                                                        src="https://source.unsplash.com/random/800x600/?product=1"
+                                                        alt=""
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
@@ -375,7 +390,82 @@ const ProductDetail = () => {
                                 className="tab-pane container fade"
                                 id="commentaires"
                             >
-                                Commentaires
+                                <div className="row">
+                                    <div className="col-12">
+                                        <p>
+                                            <Link to="/connexion" className="link-click text-bold">Connectez vous</Link> ou <Link to="/inscription" className="link-click text-bold">inscrivez vous </Link>
+                                            pour pouvoir faire des commentaires.
+                                        </p>
+                                        <div className="card my-2">
+                                            <div className="row">
+                                                <div className="col-2 text-center pt-2">
+                                                    <img
+                                                        className="circle"
+                                                        src="https://source.unsplash.com/random/800x600/?product=1"
+                                                        alt=""
+                                                    />
+                                                </div>
+                                                <div className="col-10 px-2">
+                                                    <p>
+                                                        <span className="text-bold">
+                                                            Ouedraogo Salif
+                                                        </span>{" "}
+                                                        <br />
+                                                        Lorem ipsum dolor sit
+                                                        amet consectetur
+                                                        adipisicing elit.
+                                                        Adipisci quaerat
+                                                        architecto illo quis,
+                                                        eveniet atque officia
+                                                        blanditiis ipsa rerum,
+                                                        accusantium quam
+                                                        voluptatum cumque
+                                                        placeat odio velit
+                                                        labore! Accusamus
+                                                    </p>
+                                                    <div>
+                                                        <span><i class="fa-regular fa-clock"></i> 1h </span> |
+                                                        <span> <i class="fa-sharp fa-regular fa-comment"></i> Repondre </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="card my-2">
+                                            <div className="row">
+                                                <div className="col-2 text-center pt-2">
+                                                    <img
+                                                        className="circle"
+                                                        src="https://source.unsplash.com/random/800x600/?product=1"
+                                                        alt=""
+                                                    />
+                                                </div>
+                                                <div className="col-10 px-2">
+                                                    <p>
+                                                        <span className="text-bold">
+                                                            Traore Ali
+                                                        </span>{" "}
+                                                        <br />
+                                                        Lorem ipsum dolor sit
+                                                        amet consectetur
+                                                        adipisicing elit.
+                                                        Adipisci quaerat
+                                                        architecto illo quis,
+                                                        eveniet atque officia
+                                                        blanditiis ipsa rerum,
+                                                        accusantium quam
+                                                        voluptatum cumque
+                                                        placeat odio velit
+                                                        labore! Accusamus
+                                                    </p>
+                                                    <div>
+                                                        <span><i class="fa-regular fa-clock"></i> 1h </span> |
+                                                        <span> <i class="fa-sharp fa-regular fa-comment"></i> Repondre </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
