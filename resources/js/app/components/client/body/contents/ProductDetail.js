@@ -59,7 +59,7 @@ const ProductDetail = () => {
         }
     };
     return (
-        <div className="container mt-5 mb-5">
+        <div className="container-fluid px-0 mt-5 mb-5">
             <div className="row d-flex justify-content-center">
                 <div className="col-md-10">
                     <div className="card">
@@ -321,7 +321,7 @@ const ProductDetail = () => {
                                         <div className="container-fluid">
                                             <div className="row">
                                                 <div className="col-12 col-md-6">
-                                                    <p>
+                                                    <p className="text-justify">
                                                         blanditiis ipsa rerum,
                                                         accusantium quam
                                                         voluptatum cumque
@@ -379,7 +379,87 @@ const ProductDetail = () => {
                                 className="tab-pane container fade"
                                 id="contreparties"
                             >
-                                Contreparties
+                                <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                                    <div class="col">
+                                        <div class="card mb-4 rounded-3 shadow-sm">
+                                            <div class="card-header py-3">
+                                                <h4 class="my-0 fw-normal">
+                                                    Invest. 1
+                                                </h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <h2 class="card-title pricing-card-title" style={{fontSize:"1rem"}}>
+                                                    100.000 FCFA {" "}
+                                                    <small class="text-muted fw-light">
+                                                         ou plus
+                                                    </small>
+                                                </h2>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci quaerat architecto illo quis
+                                                </p>
+                                                
+                                                <button
+                                                    type="button"
+                                                    class="w-100 btn btn-lg btn-outline-primary"
+                                                >
+                                                    Choisir
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card mb-4 rounded-3 shadow-sm">
+                                            <div class="card-header py-3">
+                                                <h4 class="my-0 fw-normal">
+                                                Invest. 2
+                                                </h4>
+                                            </div>
+                                            <div class="card-body">
+                                            <h2 class="card-title pricing-card-title" style={{fontSize:"1rem"}}>
+                                                    500.000 FCFA {" "}
+                                                    <small class="text-muted fw-light">
+                                                         ou plus
+                                                    </small>
+                                                </h2>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci quaerat architecto illo quis
+                                                </p>
+                                                <button
+                                                    type="button"
+                                                    class="w-100 btn btn-lg btn-primary"
+                                                >
+                                                    Choisir
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+                                            <div class="card-header py-3 text-white bg-primary border-primary">
+                                                <h4 class="my-0 fw-normal">
+                                                Invest. 3
+                                                </h4>
+                                            </div>
+                                            <div class="card-body">
+                                            <h2 class="card-title pricing-card-title" style={{fontSize:"1rem"}}>
+                                                    1.000.000 FCFA {" "}
+                                                    <small class="text-muted fw-light">
+                                                         ou plus
+                                                    </small>
+                                                </h2>
+                                                <p>
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci quaerat architecto illo quis
+                                                </p>
+                                                <button
+                                                    type="button"
+                                                    class="w-100 btn btn-lg btn-primary"
+                                                >
+                                                    Choisir
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div className="tab-pane container fade" id="faqs">
                                 faqs
@@ -411,14 +491,14 @@ const ProductDetail = () => {
                                         </p>
                                         <div className="card my-2">
                                             <div className="row">
-                                                <div className="col-2 text-center pt-2">
+                                                <div className="col-4 col-md-2 text-center pt-2">
                                                     <img
                                                         className="circle"
                                                         src="https://source.unsplash.com/random/800x600/?product=1"
                                                         alt=""
                                                     />
                                                 </div>
-                                                <div className="col-10 px-2">
+                                                <div className="col-8 col-md-10 px-2">
                                                     <p>
                                                         <span className="text-bold">
                                                             Ouedraogo Salif
@@ -453,14 +533,14 @@ const ProductDetail = () => {
                                         </div>
                                         <div className="card my-2">
                                             <div className="row">
-                                                <div className="col-2 text-center pt-2">
+                                                <div className="col-4 col-md-2  text-center pt-2">
                                                     <img
                                                         className="circle"
                                                         src="https://source.unsplash.com/random/800x600/?product=1"
                                                         alt=""
                                                     />
                                                 </div>
-                                                <div className="col-10 px-2">
+                                                <div className="col-8 col-md-10 px-2">
                                                     <p>
                                                         <span className="text-bold">
                                                             Traore Ali
@@ -495,7 +575,7 @@ const ProductDetail = () => {
                                         </div>
                                     </div>
                                     <div className="col-12 mt-4">
-                                        <hr/>
+                                        <hr />
                                         <CKEditor
                                             initData="<p>Entrez votre commentaire !</p>"
                                             onInstanceReady={() => {
@@ -503,7 +583,9 @@ const ProductDetail = () => {
                                             }}
                                         />
                                         <div className="my-2 d-flex justify-content-center">
-                                            <button className="btn btn-sm btn-afdefis">Commenter</button>
+                                            <button className="btn btn-sm btn-afdefis">
+                                                Commenter
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
