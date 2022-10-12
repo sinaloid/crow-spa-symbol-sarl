@@ -76,7 +76,7 @@ const HeaderNavBar = () => {
                             </li>
                             <li className="nav-item ">
                                 <a
-                                    href="https://market.africadefis.com"
+                                    href="http://market.africadefis.com"
                                     className="nav-link link link-dark px-2"
                                 >
                                     <span
@@ -106,7 +106,7 @@ const HeaderNavBar = () => {
                                 <ul className="dropdown-menu">
                                     <li>
                                         <Link
-                                            to={url.home}
+                                            to={url.faqs}
                                             className="nav-link link link-dark px-2"
                                             aria-current="page"
                                         >
@@ -121,7 +121,7 @@ const HeaderNavBar = () => {
                                     </li>
                                     <li>
                                         <Link
-                                            to={url.home}
+                                            to={url.faqs}
                                             className="nav-link link link-dark px-2"
                                             aria-current="page"
                                         >

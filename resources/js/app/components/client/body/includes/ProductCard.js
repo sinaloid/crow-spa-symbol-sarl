@@ -95,10 +95,11 @@ const ProductCard = ({ data, idx }) => {
                 Investir
               </button>*/}
           </div>
-        </div>
-        <div className="progress rounded-0">
+          <div className="progress rounded-0 mt-3">
           <div className="progress-bar progress-bar-striped progress-bar-animated bg-primary" style={{'width':'70%'}}>70%</div>
         </div>
+        </div>
+        
       </div>
        
     </div>

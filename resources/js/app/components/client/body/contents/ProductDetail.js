@@ -63,7 +63,7 @@ const ProductDetail = () => {
             <div className="row d-flex justify-content-center">
                 <div className="col-md-10">
                     <div className="card">
-                        <div className="row p-4 pb-3">
+                        <div className="row p-2 pb-3">
                             <div className="col-12">
                                 <h1 className="text-center">Nom du projet</h1>
                                 <p className="text-center mt-1">Slogan....</p>
