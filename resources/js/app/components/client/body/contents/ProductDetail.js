@@ -220,7 +220,7 @@ const ProductDetail = () => {
                                     data-bs-toggle="tab"
                                     href="#infos"
                                 >
-                                    <span>Infos</span>
+                                    <span>Actualités</span>
                                 </a>
                             </li>
                             <li className="nav-item">
@@ -242,7 +242,7 @@ const ProductDetail = () => {
                                 {/*<h2 className="text-center my-5">Nom du projet</h2>*/}
                                 <ul>
                                     <li>
-                                        <span className="text-bold">
+                                        <span className="text-bold" style={{fontSize:"1rem"}}>
                                             À propos
                                         </span>
                                         <p>
@@ -278,7 +278,7 @@ const ProductDetail = () => {
                                         </p>
                                     </li>
                                     <li>
-                                        <span className="text-bold">
+                                        <span className="text-bold" style={{fontSize:"1rem"}}>
                                             Comment le financement sera-t-il
                                             utilisé?
                                         </span>
@@ -315,7 +315,7 @@ const ProductDetail = () => {
                                         </p>
                                     </li>
                                     <li>
-                                        <span className="text-bold">
+                                        <span className="text-bold" style={{fontSize:"1rem"}}>
                                             Le(s) porteur(s) de projet
                                         </span>
                                         <div className="container-fluid">
@@ -465,7 +465,7 @@ const ProductDetail = () => {
                                 faqs
                             </div>
                             <div className="tab-pane container fade" id="infos">
-                                infos
+                                Actualités du projets
                             </div>
                             <div
                                 className="tab-pane container fade"
@@ -500,7 +500,7 @@ const ProductDetail = () => {
                                                 </div>
                                                 <div className="col-8 col-md-10 px-2">
                                                     <p>
-                                                        <span className="text-bold">
+                                                        <span className="text-bold" style={{fontSize:"1rem"}}>
                                                             Ouedraogo Salif
                                                         </span>{" "}
                                                         <br />
@@ -519,11 +519,11 @@ const ProductDetail = () => {
                                                     <div>
                                                         <span>
                                                             <i class="fa-regular fa-clock"></i>{" "}
-                                                            1h{" "}
-                                                        </span>{" "}
+                                                            1h{"  "}
+                                                        </span>{"  "}
                                                         |
                                                         <span>
-                                                            {" "}
+                                                            {"  "}
                                                             <i class="fa-sharp fa-regular fa-comment"></i>{" "}
                                                             Repondre{" "}
                                                         </span>
@@ -542,7 +542,7 @@ const ProductDetail = () => {
                                                 </div>
                                                 <div className="col-8 col-md-10 px-2">
                                                     <p>
-                                                        <span className="text-bold">
+                                                        <span className="text-bold" style={{fontSize:"1rem"}}>
                                                             Traore Ali
                                                         </span>{" "}
                                                         <br />
