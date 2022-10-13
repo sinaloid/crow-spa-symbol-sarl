@@ -86,7 +86,7 @@ const ProductCard = ({ data, idx }) => {
           </div>
           <div className="d-flex justify-content-between align-items-center ">
               <Link data = {data} to={{
-                pathname:`/produit/${data.slug}`,
+                pathname:`/projet/${data.slug}`,
                 state: data
                 }} className="btn btn-sm btn-afdefis">
                   Investir

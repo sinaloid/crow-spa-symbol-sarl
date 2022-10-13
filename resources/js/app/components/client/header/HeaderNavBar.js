@@ -220,7 +220,7 @@ const HeaderNavBar = () => {
                                     </li>
                                 </>
                             )}
-                            <li className="nav-item">
+                            {/*<li className="nav-item">
                                 <Link
                                     to="#"
                                     className="nav-link link link-dark px-2"
@@ -234,7 +234,7 @@ const HeaderNavBar = () => {
                                         <Panier classe="" size="" />
                                     </span>
                                 </Link>
-                            </li>
+                            </li>*/}
                         </ul>
                     </div>
                 </div>

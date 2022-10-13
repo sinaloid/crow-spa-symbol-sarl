@@ -1,8 +1,8 @@
 const url = {
     'index': '/*',
     'home': '/',
-    'produits': '/produits',
-    'produits_detail': '/produit/:id',
+    'produits': '/projets',
+    'produits_detail': '/projet/:id',
     'faqs': '/faqs',
     'apropos': '/apropos',
     'login': '/connexion',
