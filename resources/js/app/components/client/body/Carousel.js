@@ -1,8 +1,9 @@
 import React from "react";
 import './carousel.css'
-import banner1 from '../../../assets/img/banner1.jpg'
-import banner2 from '../../../assets/img/banner2.jpg'
-import banner3 from '../../../assets/img/banner3.jpg'
+import banner1 from '../../../assets/img/banner1.jpeg'
+import banner2 from '../../../assets/img/banner2.jpeg'
+import banner3 from '../../../assets/img/banner3.jpeg'
+import banner4 from '../../../assets/img/banner4.jpeg'
 
 const Carousel = () => {
   return (
@@ -32,6 +33,13 @@ const Carousel = () => {
           data-bs-target="#myCarousel"
           data-bs-slide-to="2"
           aria-label="Slide 3"
+          className=""
+        ></button>
+        <button
+          type="button"
+          data-bs-target="#myCarousel"
+          data-bs-slide-to="3"
+          aria-label="Slide 4"
           className=""
         ></button>
       </div>
@@ -89,6 +97,9 @@ const Carousel = () => {
               </p>
             </div>*/}
           </div>
+        </div>
+        <div className="carousel-item">
+          <img className="bd-placeholder-img" width="auto" height="100px" src={banner4} alt="" />
         </div>
       </div>
       <button
