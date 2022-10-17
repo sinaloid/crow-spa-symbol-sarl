@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { urlImg } from "../../../../services/api";
+import url from "../../../../url";
 
 const Brand = ({ datas = [] }) => {
     return (
@@ -69,7 +70,7 @@ const Brand = ({ datas = [] }) => {
                           </p>
                           <div>
                             <Link to="#" className="btn btn-afdefis-secondary mb-3 me-3">Lancer mon projet</Link>
-                            <Link to="#" className="btn btn-afdefis mb-3 me-3">Découvrir les projets</Link>
+                            <Link to={url.produits} className="btn btn-afdefis mb-3 me-3">Découvrir les projets</Link>
                           </div>
                         </div>
                     </div>

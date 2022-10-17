@@ -51,7 +51,7 @@ const HomeProduitList = ({ datas = [], title }) => {
                           </p>
                           <div>
                             <Link to="#" className="btn btn-afdefis-secondary mb-3 me-3">Lancer mon projet</Link>
-                            <Link to="#" className="btn btn-afdefis mb-3 me-3">Découvrir les projets</Link>
+                            <Link to={url.produits} className="btn btn-afdefis mb-3 me-3">Découvrir les projets</Link>
                           </div>
                         </div>
                     </div>
