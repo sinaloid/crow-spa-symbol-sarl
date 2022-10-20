@@ -188,7 +188,7 @@ important
   line-height: 1.875rem;
 }
 .btn{
-  font-size: 0.875rem;
+  font-size: 0.975rem;
   font-weight: var(--font-weight-title);
   line-height: 1.5rem;
 }
@@ -213,7 +213,7 @@ important
 }
 .btn-afdefis-primary:hover{
   background-color: #fff;
-  color: var(--primary-color);
+  color: var(--primary-color) !important;
 }
 
 .btn-afdefis-secondary{

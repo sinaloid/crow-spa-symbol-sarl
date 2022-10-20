@@ -6,29 +6,25 @@ import { AppContext } from "../../context/context";
 import apiClient from "../../services/api";
 import url from "../../url";
 
-
-
 const Checkout = () => {
     const authCtx = useContext(AppContext);
-    const { user, onUserChange,cart, appType } = authCtx;
+    const { user, onUserChange, cart, appType } = authCtx;
     const [info, setInfo] = useState([]);
     const [total, setTotal] = useState(0);
     const [action, setAction] = useState({
-        typeCommande:'',
-        pay:false
+        typeCommande: "",
+        pay: false,
     });
-    let {commandSlug} = useParams();
-    const [cmdSlug, setCmdSlug] = useState(commandSlug)
+    let { commandSlug } = useParams();
+    const [cmdSlug, setCmdSlug] = useState(commandSlug);
     const payNow = "ne pas enregistrer";
     const payAfter = "enregistrer";
-    const [datas, setDatas] = useState([])
+    const [datas, setDatas] = useState([]);
     const path = window.location.pathname;
-    
 
     useEffect(() => {
         if (user.token != null) {
             let url = cmdSlug ? `commande/${cmdSlug}` : "userCommande";
-            
 
             apiClient
                 .get(url, {
@@ -41,12 +37,11 @@ const Checkout = () => {
                         prxTotal += data.prix * data.quantite;
                     });
                     setTotal(prxTotal);
-                    if(res.data.produits !=null){
-                        setDatas(res.data.produits)
-                    }else{
-                        setDatas(cart.content)
+                    if (res.data.produits != null) {
+                        setDatas(res.data.produits);
+                    } else {
+                        setDatas(cart.content);
                     }
-                    
                 })
                 .catch((error) => {
                     console.log(error.response);
@@ -62,7 +57,7 @@ const Checkout = () => {
         data.append("commandSlug", cmdSlug);
         data.append("produit", JSON.stringify(cart.content));
         //console.log(data.get("produit"))
-        
+
         apiClient
             .post("paiement", data, {
                 headers: { Authorization: `Bearer ${user.token}` },
@@ -73,8 +68,11 @@ const Checkout = () => {
                     //notify("success", res.data.response);
                     //setRefresh(refresh + 1);
                     setCmdSlug(res.data.commandSlug);
-                    if(isMobile && pay && appType.mobile){
-                        window.open(`http://market.africadefis.com/mm/paiement/${res.data.commandSlug}`, '_blank');
+                    if (isMobile && pay && appType.mobile) {
+                        window.open(
+                            `http://market.africadefis.com/mm/paiement/${res.data.commandSlug}`,
+                            "_blank"
+                        );
                     }
 
                     if (pay) {
@@ -89,7 +87,6 @@ const Checkout = () => {
                 //notify("error", error.response.data.message);
                 //setRefresh(refresh + 1);
             });
-        
     };
 
     const calltouchpay = (montant, slug) => {
@@ -110,17 +107,17 @@ const Checkout = () => {
         /*SendPaymentInfos(order_number,agency_code,secure_code,domain_name,url_redirection_suc
             cess,url_redirection_failed,amount,city,email,clientFirstName,clientLastName,)*/
     };
-    const detectDevice = (type, pay) =>{
-        
-        
-    }
+    const detectDevice = (type, pay) => {};
     const handleOnClickShare = (responseSlug) => {
-        window.open(`http://market.africadefis.com/mm/paiement/${responseSlug}`, '_blank');
-      };
-    
+        window.open(
+            `http://market.africadefis.com/mm/paiement/${responseSlug}`,
+            "_blank"
+        );
+    };
+
     return (
         <>
-            {(user.isAuth || path.includes('mm')) ? (
+            {user.isAuth || path.includes("mm") ? (
                 <>
                     <main>
                         <div className="row">
@@ -139,9 +136,9 @@ const Checkout = () => {
                                             data-bs-target="#myModal"
                                             onClick={() => {
                                                 setAction({
-                                                    typeCommande:payNow,
-                                                    pay:true
-                                                })
+                                                    typeCommande: payNow,
+                                                    pay: true,
+                                                });
                                             }}
                                         >
                                             <i className="fa fa-money"></i>{" "}
@@ -154,9 +151,9 @@ const Checkout = () => {
                                             data-bs-target="#myModal"
                                             onClick={() => {
                                                 setAction({
-                                                    typeCommande:payAfter,
-                                                    pay:false
-                                                })
+                                                    typeCommande: payAfter,
+                                                    pay: false,
+                                                });
                                             }}
                                         >
                                             Valider et payer ultérieurement
@@ -171,7 +168,6 @@ const Checkout = () => {
                                         <Link
                                             to="#"
                                             className="btn btn-afdefis ms-1 my-1"
-                                            
                                         >
                                             <i className="fa fa-file-pdf-o"></i>{" "}
                                             Export PDF
@@ -218,7 +214,7 @@ const Checkout = () => {
                                                                 }}
                                                             >
                                                                 AFRICADEFIS
-                                                                MARKET
+                                                                CROWFUNDING
                                                             </Link>
                                                         </p>
                                                         <div className="p-0">
@@ -303,13 +299,13 @@ const Checkout = () => {
                                                         <tr className="text-center1">
                                                             <th>#</th>
                                                             <th className="text-left">
-                                                                PRODUIT(S)
+                                                                PROJET(S)
                                                             </th>
                                                             <th className="text-right">
-                                                                QUANITE
+                                                                DESCRIPTION
                                                             </th>
                                                             <th className="text-right">
-                                                                MONTANT(XOF)
+                                                                INVESTISSEMENT(XOF)
                                                             </th>
                                                             <th className="text-right">
                                                                 TOTAL(XOF)
@@ -368,57 +364,8 @@ const Checkout = () => {
                                                             }
                                                         )}
                                                     </tbody>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <td colSpan="2"></td>
-                                                            <td colSpan="2">
-                                                                SOUS TOTAL
-                                                            </td>
-                                                            <td>
-                                                                {Intl.NumberFormat().format(
-                                                                    total
-                                                                ) + " FCFA"}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colSpan="2"></td>
-                                                            <td colSpan="2">
-                                                                TVA 18%
-                                                            </td>
-                                                            <td>
-                                                                {Intl.NumberFormat().format(
-                                                                    total * 0.18
-                                                                ) + " FCFA"}
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colSpan="2"></td>
-                                                            <td colSpan="2">
-                                                                TOTAL
-                                                            </td>
-                                                            <td>
-                                                                {Intl.NumberFormat().format(
-                                                                    total * 1.18
-                                                                ) + " FCFA"}
-                                                            </td>
-                                                        </tr>
-                                                    </tfoot>
                                                 </table>
                                             </div>
-                                            <footer className="text-center">
-                                                <strong
-                                                    style={{ fontSize: "12px" }}
-                                                >
-                                                    NOTICE
-                                                </strong>
-                                                :
-                                                <small>
-                                                    Le montant de la facture
-                                                    n'inclue pas le transport
-                                                    qui est calculé selon la
-                                                    zone de livraison.
-                                                </small>
-                                            </footer>
                                         </div>
                                         <div></div>
                                     </div>
@@ -432,9 +379,9 @@ const Checkout = () => {
                                             data-bs-target="#myModal"
                                             onClick={() => {
                                                 setAction({
-                                                    typeCommande:payNow,
-                                                    pay:true
-                                                })
+                                                    typeCommande: payNow,
+                                                    pay: true,
+                                                });
                                             }}
                                         >
                                             <i className="fa fa-money"></i>{" "}
@@ -447,9 +394,9 @@ const Checkout = () => {
                                             data-bs-target="#myModal"
                                             onClick={() => {
                                                 setAction({
-                                                    typeCommande:payAfter,
-                                                    pay:false
-                                                })
+                                                    typeCommande: payAfter,
+                                                    pay: false,
+                                                });
                                             }}
                                         >
                                             Valider et payer ultérieurement
@@ -478,9 +425,11 @@ const Checkout = () => {
                         <div className="modal-dialog modal-dialog-centered">
                             <div className="modal-content">
                                 <div className="modal-header">
-                                    <h4 className="modal-title">{
-                                        (action.pay) ? "Paiement maintenant" : "Paiement prochainement"
-                                    }</h4>
+                                    <h4 className="modal-title">
+                                        {action.pay
+                                            ? "Paiement maintenant"
+                                            : "Paiement prochainement"}
+                                    </h4>
                                     <button
                                         type="button"
                                         className="btn-close"
@@ -489,9 +438,9 @@ const Checkout = () => {
                                 </div>
 
                                 <div className="modal-body">
-                                    {
-                                        (action.pay) ? "Vous êtes sur le point de faire un paiement" : "Vous êtes sur le point de valider un paiement ultérieur"
-                                    }
+                                    {action.pay
+                                        ? "Vous êtes sur le point de faire un paiement"
+                                        : "Vous êtes sur le point de valider un paiement ultérieur"}
                                 </div>
 
                                 <div className="modal-footer">
@@ -499,7 +448,12 @@ const Checkout = () => {
                                         type="button"
                                         className="btn btn-afdefis-secondary"
                                         data-bs-dismiss="modal"
-                                        onClick={()=>{handleSubmit(action.typeCommande, action.pay)}}
+                                        onClick={() => {
+                                            handleSubmit(
+                                                action.typeCommande,
+                                                action.pay
+                                            );
+                                        }}
                                     >
                                         Continuer
                                     </button>

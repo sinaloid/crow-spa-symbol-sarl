@@ -31,6 +31,7 @@ import RecommandationVente from "./components/profile/contents/RecommandationVen
 import PaiementFailed from "./components/client/body/contents/PaiementFailed";
 import PaiementSuccess from "./components/client/body/contents/PaiementSuccess";
 import CheckoutMobile from "./components/client/CheckoutMobile";
+import Contreparties from "./components/client/body/contents/Contreparties";
 
 const notFound = <NotFound />
 const appRoutes = [
@@ -47,6 +48,7 @@ const bodyRoutes = [
   { path: url.produits, element: <Produit /> },
   { path: url.app_produits, element: <Produit /> },
   { path: url.produits_detail, element: <ProductDetail />},
+  { path: url.contreparties, element: <Contreparties />},
   { path: url.faqs, element: <Faq /> },
   { path: url.app_faqs, element: <Faq /> },
   { path: url.apropos, element: <About /> },

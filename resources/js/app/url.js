@@ -7,6 +7,7 @@ const url = {
     'apropos': '/apropos',
     'login': '/connexion',
     'register': '/inscription',
+    'contreparties': '/contreparties',
     'checkout': '/paiement',
     'checkout_params': '/paiement/:commandSlug',
     'checkout_app_paiement': '/mm/paiement/:commandSlug',

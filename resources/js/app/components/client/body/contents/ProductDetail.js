@@ -68,7 +68,7 @@ const ProductDetail = () => {
                                 <h1 className="text-center">Nom du projet</h1>
                                 <p className="text-center mt-1">Slogan....</p>
                             </div>
-                            <div className="col-12 col-md-8">
+                            <div className="col-12 col-lg-8">
                                 <iframe
                                     width="420"
                                     height="315"
@@ -76,14 +76,14 @@ const ProductDetail = () => {
                                     src="https://www.youtube.com/embed/tgbNymZ7vqY"
                                 ></iframe>
                             </div>
-                            <div className="col-12 col-md-4">
+                            <div className="col-12 col-lg-4">
                                 <div className="product">
                                     <div className="d-flex justify-content-between align-items-center">
                                         <div className="d-flex align-items-center">
                                             <button className="btn btn-afdefis">
                                                 Suivre
                                                 <i
-                                                    className="fa fa-heart fa-2xl mx-1"
+                                                    className="fa fa-heart fa-xl mx-1"
                                                     style={{ color: "#fff" }}
                                                 ></i>
                                             </button>
@@ -91,7 +91,7 @@ const ProductDetail = () => {
                                         <button className="btn btn-afdefis">
                                             Partager
                                             <i
-                                                className="fa fa-share-alt fa-2xl mx-1"
+                                                className="fa fa-share-alt fa-xl mx-1"
                                                 style={{ color: "#fff" }}
                                             ></i>
                                         </button>
@@ -161,14 +161,12 @@ const ProductDetail = () => {
                                     <p className="about">{data.description}</p>
 
                                     <div className="cart mt-4 align-items-center">
-                                        <button
+                                        <Link 
                                             className="btn btn-afdefis-secondary  text-uppercase mr-2 mb-4 px-4 w-100"
-                                            onClick={() => {
-                                                addProduit();
-                                            }}
-                                        >
-                                            Investir
-                                        </button>
+                                            to={url.contreparties}
+                                            >
+                                        Investir
+                                        </Link>
                                         <br />
                                         <i className="fa fa-long-arrow-left"></i>
                                         <Link
@@ -388,6 +386,10 @@ const ProductDetail = () => {
                                 className="tab-pane container fade"
                                 id="contreparties"
                             >
+                                <h2 className="title-2">Choisissez une contrepartie</h2>
+                    <p>
+                    Investissez dans le projet et recevez des contreparties en échange.
+                    </p>
                                 <div className="row row-cols-1 row-cols-md-3 mb-3 text-center">
                                     <div className="col">
                                         <div className="card mb-4 rounded-3 shadow-sm">
@@ -413,12 +415,12 @@ const ProductDetail = () => {
                                                     architecto illo quis
                                                 </p>
 
-                                                <button
-                                                    type="button"
-                                                    className="w-100 btn btn-lg btn-outline-primary"
+                                                <Link
+                                                    to={url.checkout}
+                                                    className="w-100 btn btn-lg btn-afdefis-primary"
                                                 >
                                                     Choisir
-                                                </button>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
@@ -445,18 +447,18 @@ const ProductDetail = () => {
                                                     elit. Adipisci quaerat
                                                     architecto illo quis
                                                 </p>
-                                                <button
-                                                    type="button"
-                                                    className="w-100 btn btn-lg btn-primary"
+                                                <Link
+                                                    to={url.checkout}
+                                                    className="w-100 btn btn-lg btn-afdefis"
                                                 >
                                                     Choisir
-                                                </button>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col">
-                                        <div className="card mb-4 rounded-3 shadow-sm border-primary">
-                                            <div className="card-header py-3 text-white bg-primary border-primary">
+                                        <div className="card mb-4 rounded-3 shadow-sm">
+                                            <div className="card-header py-3">
                                                 <h4 className="my-0 fw-normal">
                                                     Invest. 3
                                                 </h4>
@@ -477,12 +479,12 @@ const ProductDetail = () => {
                                                     elit. Adipisci quaerat
                                                     architecto illo quis
                                                 </p>
-                                                <button
-                                                    type="button"
-                                                    className="w-100 btn btn-lg btn-primary"
+                                                <Link
+                                                    to={url.checkout}
+                                                    className="w-100 btn btn-lg btn-afdefis-secondary"
                                                 >
                                                     Choisir
-                                                </button>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
