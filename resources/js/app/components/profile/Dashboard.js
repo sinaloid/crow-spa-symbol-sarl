@@ -144,7 +144,7 @@ const Dashboard = () => {
                                                     data-bs-toggle="collapse"
                                                     data-bs-target=".collapse.show"
                                                 >
-                                                    Commandes
+                                                    Investissements
                                                 </span>
                                             </Link>
                                         </li>
@@ -166,7 +166,7 @@ const Dashboard = () => {
                                                     data-bs-toggle="collapse"
                                                     data-bs-target=".collapse.show"
                                                 >
-                                                    Produits
+                                                    Projets
                                                 </span>
                                             </Link>
                                         </li>
@@ -231,14 +231,8 @@ const Dashboard = () => {
                                                 </span>
                                             </Link>
                                         </li>
+                                        
                                         {/*<li className="nav-item">
-                  <Link className="nav-link" to={url.dashboard_messages}>
-                    <i className="fa-regular fa-message"></i>
-                    <i> </i>
-                    Messages
-                  </Link>
-                </li>*/}
-                                        <li className="nav-item">
                                             <Link
                                                 className="nav-link"
                                                 to={url.dashboard_reductions}
@@ -291,7 +285,7 @@ const Dashboard = () => {
                                                     Meilleures V&R
                                                 </span>
                                             </Link>
-                                        </li>
+                                        </li>*/}
                                         
                                         
                                         <li className="nav-item dropdown">
