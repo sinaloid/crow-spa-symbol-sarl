@@ -16,11 +16,13 @@ const Login = () => {
     const authCtx = useContext(AppContext);
     const { user, onUserChange } = authCtx;
     const navigate = useNavigate();
+    const [iclasse, setClasse] = useState('fa-eye')
+    const [itype, settype] = useState('password')
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoading(true);
-        setMessage("")
+        setMessage("");
 
         apiClient
             .post("login", {
@@ -38,7 +40,6 @@ const Login = () => {
                     onUserChange(data);
                     setUser(data);
                     setLoading(false);
-                    
                 }
             })
             .catch((error) => {
@@ -46,14 +47,14 @@ const Login = () => {
                 if (error.response && error.response.status === 422) {
                     setMessage(error.response.data.message);
                 } else {
-                    console.log(error.response.data.message)
+                    console.log(error.response.data.message);
                     setMessage(error.response.data.message);
                 }
             });
     };
     if (user.isAuth === true && user.token != null) {
         console.log(`connexion reussi, isAuth: ${user}`);
-        
+
         return navigate(url.dashboard + "/" + url.dashboard_home);
     }
 
@@ -74,8 +75,26 @@ const Login = () => {
                         </div>
                         <div className="input-field">
                             <i className="fas fa-lock"></i>
+                            <i
+                                className={`fa-solid ${iclasse}`}
+                                style={{
+                                    position: "absolute",
+                                    right: "8%",
+                                    top: "0",
+                                }}
+                                onClick={(e)=>{
+                                    e.preventDefault()
+                                    if(iclasse != 'fa-eye'){
+                                        setClasse('fa-eye')
+                                        settype('password')
+                                    }else{
+                                        setClasse('fa-eye-slash')
+                                        settype('text')
+                                    }
+                                }}
+                            ></i>
                             <input
-                                type="password"
+                                type={itype}
                                 placeholder="Votre mots de passe"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -119,7 +138,8 @@ const Login = () => {
                         <div className="content">
                             <h3>Vous n'avez pas de compte ?</h3>
                             <p>
-                            Incrivez vous pour acheter facilement et suivre l'évolution de votre commande
+                                Incrivez vous pour acheter facilement et suivre
+                                l'évolution de votre commande
                             </p>
                             <Link to={url.register} aria-current="page">
                                 <button

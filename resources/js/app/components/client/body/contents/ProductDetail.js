@@ -88,7 +88,11 @@ const ProductDetail = () => {
                                                 ></i>
                                             </button>
                                         </div>
-                                        <button className="btn btn-afdefis">
+                                        <button
+                                            className="btn btn-afdefis"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#myModal"
+                                        >
                                             Partager
                                             <i
                                                 className="fa fa-share-alt fa-xl mx-1"
@@ -161,11 +165,11 @@ const ProductDetail = () => {
                                     <p className="about">{data.description}</p>
 
                                     <div className="cart mt-4 align-items-center">
-                                        <Link 
+                                        <Link
                                             className="btn btn-afdefis-secondary  text-uppercase mr-2 mb-4 px-4 w-100"
                                             to={url.contreparties}
-                                            >
-                                        Investir
+                                        >
+                                            Investir
                                         </Link>
                                         <br />
                                         <i className="fa fa-long-arrow-left"></i>
@@ -178,6 +182,42 @@ const ProductDetail = () => {
                                         >
                                             Retour
                                         </Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-12">
+                                <div class="modal fade" id="myModal">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">
+                                                    Partager le projet sur les réseaux sociaux
+                                                </h4>
+                                                <button
+                                                    type="button"
+                                                    class="btn-close"
+                                                    data-bs-dismiss="modal"
+                                                ></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <span className="d-inline-block me-3 my-1"><i class="fa-brands fa-facebook fa-3x" title="Partager sur Facebook" style={{color:"#4267B2"}}></i></span>{"   "}
+                                                <span className="d-inline-block me-3 my-1"><i class="fa-brands fa-facebook-messenger fa-3x" title="Partager sur Messenger" style={{color:"#00B2FF"}}></i></span>{"   "}
+                                                <span className="d-inline-block me-3 my-1"><i class="fa-brands fa-twitter fa-3x" title="Partager sur Twitter" style={{color:"#1DA1F2"}}></i></span>{"   "}
+                                                <span className="d-inline-block me-3 my-1"><i class="fa-brands fa-linkedin fa-3x" title="Partager sur Linkedin" style={{color:"#0A66C2"}}></i></span>{"   "}
+                                                <span className="d-inline-block me-3 my-1"><i class="fa-brands fa-whatsapp fa-3x" title="Partager sur Whatsapp" style={{color:"#25D366"}}></i></span>{"   "}
+                                                <span className="d-inline-block me-3 my-1"><i class="fa-solid fa-link fa-3x" title="Copier le lien" style={{color:"#4267B2"}}></i></span>{"   "}
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-afdefis"
+                                                    data-bs-dismiss="modal"
+                                                >
+                                                    Fermer
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -386,10 +426,13 @@ const ProductDetail = () => {
                                 className="tab-pane container fade"
                                 id="contreparties"
                             >
-                                <h2 className="title-2">Choisissez une contrepartie</h2>
-                    <p>
-                    Investissez dans le projet et recevez des contreparties en échange.
-                    </p>
+                                <h2 className="title-2">
+                                    Choisissez une contrepartie
+                                </h2>
+                                <p>
+                                    Investissez dans le projet et recevez des
+                                    contreparties en échange.
+                                </p>
                                 <div className="row row-cols-1 row-cols-md-3 mb-3 text-center">
                                     <div className="col">
                                         <div className="card mb-4 rounded-3 shadow-sm">
