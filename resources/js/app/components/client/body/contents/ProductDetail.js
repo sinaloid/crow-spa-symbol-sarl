@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../../../context/context";
 import { Link, useParams } from "react-router-dom";
 import { CKEditor } from "ckeditor4-react";
-import apiClient, { urlImg } from "../../../../services/api";
+import apiClient, { SITE_URL, urlImg } from "../../../../services/api";
 import url from "../../../../url";
 
 const ProductDetail = () => {
@@ -191,7 +191,8 @@ const ProductDetail = () => {
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h4 class="modal-title">
-                                                    Partager le projet sur les réseaux sociaux
+                                                    Partager le projet sur les
+                                                    réseaux sociaux
                                                 </h4>
                                                 <button
                                                     type="button"
@@ -201,12 +202,191 @@ const ProductDetail = () => {
                                             </div>
 
                                             <div class="modal-body">
-                                                <span className="d-inline-block me-3 my-1"><i class="fa-brands fa-facebook fa-3x" title="Partager sur Facebook" style={{color:"#4267B2"}}></i></span>{"   "}
-                                                <span className="d-inline-block me-3 my-1"><i class="fa-brands fa-facebook-messenger fa-3x" title="Partager sur Messenger" style={{color:"#00B2FF"}}></i></span>{"   "}
-                                                <span className="d-inline-block me-3 my-1"><i class="fa-brands fa-twitter fa-3x" title="Partager sur Twitter" style={{color:"#1DA1F2"}}></i></span>{"   "}
-                                                <span className="d-inline-block me-3 my-1"><i class="fa-brands fa-linkedin fa-3x" title="Partager sur Linkedin" style={{color:"#0A66C2"}}></i></span>{"   "}
-                                                <span className="d-inline-block me-3 my-1"><i class="fa-brands fa-whatsapp fa-3x" title="Partager sur Whatsapp" style={{color:"#25D366"}}></i></span>{"   "}
-                                                <span className="d-inline-block me-3 my-1"><i class="fa-solid fa-link fa-3x" title="Copier le lien" style={{color:"#4267B2"}}></i></span>{"   "}
+                                                <span className="d-inline-block me-3 my-1">
+                                                    <i
+                                                        class="fa-brands fa-facebook fa-3x"
+                                                        title="Partager sur Facebook"
+                                                        type="button"
+                                                        style={{
+                                                            color: "#4267B2",
+                                                        }}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            if (
+                                                                /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+                                                                    navigator.userAgent
+                                                                )
+                                                            ) {
+                                                                window.open(
+                                                                    "fb-messenger://share/?" +
+                                                                        SITE_URL +
+                                                                        "projet" +
+                                                                        "slug",
+                                                                    "facebook-share-dialog",
+                                                                    "width=800,height=600"
+                                                                );
+                                                            } else {
+                                                                window.open(
+                                                                    "https://www.facebook.com/sharer/sharer.php?u=" +
+                                                                        SITE_URL +
+                                                                        "projet" +
+                                                                        "slug",
+                                                                    "facebook-share-dialog",
+                                                                    "width=800,height=600"
+                                                                );
+                                                            }
+                                                        }}
+                                                    ></i>
+                                                </span>
+                                                {"   "}
+                                                <span className="d-inline-block me-3 my-1">
+                                                    <i
+                                                        class="fa-brands fa-telegram fa-3x"
+                                                        title="Partager sur Telegram"
+                                                        type="button"
+                                                        style={{
+                                                            color: "#00B2FF",
+                                                        }}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            window.open(
+                                                                "https://t.me/share/url?url=" +
+                                                                    encodeURIComponent(
+                                                                        SITE_URL +
+                                                                            "/projet/" +
+                                                                            "slug"
+                                                                    ) +
+                                                                    "&text=" +
+                                                                    encodeURIComponent(
+                                                                        document.title
+                                                                    ),
+                                                                "",
+                                                                "width=800,height=600"
+                                                            );
+                                                        }}
+                                                    ></i>
+                                                </span>
+                                                {"   "}
+                                                <span className="d-inline-block me-3 my-1">
+                                                    <i
+                                                        class="fa-brands fa-twitter fa-3x"
+                                                        title="Partager sur Twitter"
+                                                        type="button"
+                                                        style={{
+                                                            color: "#1DA1F2",
+                                                        }}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            window.open(
+                                                                "https://twitter.com/intent/tweet?url=" +
+                                                                    SITE_URL,
+                                                                "" +
+                                                                    document.title,
+                                                                "width=800,height=600"
+                                                            );
+                                                        }}
+                                                    ></i>
+                                                </span>
+                                                {"   "}
+                                                <span className="d-inline-block me-3 my-1">
+                                                    <i
+                                                        class="fa-brands fa-linkedin fa-3x"
+                                                        title="Partager sur Linkedin"
+                                                        type="button"
+                                                        style={{
+                                                            color: "#0A66C2",
+                                                        }}
+                                                        onClick={(e)=>{
+                                                            e.preventDefault()
+                                                            window.open(
+                                                                "https://www.linkedin.com/shareArticle?mini=true&summary=africadefis&title=Projet Crowfunding&url=" +
+                                                                    encodeURIComponent(
+                                                                        SITE_URL +
+                                                                            "/projet/" +
+                                                                            "slug"
+                                                                    ),
+                                                                "name",
+                                                                "width=800,height=600"
+                                                            );
+                                                            
+                                                        }}
+                                                    ></i>
+                                                </span>
+                                                {"   "}
+                                                <span className="d-inline-block me-3 my-1">
+                                                    <i
+                                                        class="fa-brands fa-whatsapp fa-3x"
+                                                        title="Partager sur Whatsapp"
+                                                        type="button"
+                                                        style={{
+                                                            color: "#25D366",
+                                                        }}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            if (
+                                                                /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+                                                                    navigator.userAgent
+                                                                )
+                                                            ) {
+                                                                window.open(
+                                                                    "whatsapp://send?text=" +
+                                                                        encodeURIComponent(
+                                                                            SITE_URL +
+                                                                                "/projet/" +
+                                                                                "slug"
+                                                                        ),
+                                                                    "name",
+                                                                    "width=800,height=600"
+                                                                );
+                                                            } else {
+                                                                window.open(
+                                                                    "https://web.whatsapp.com/send?text=" +
+                                                                        encodeURIComponent(
+                                                                            SITE_URL +
+                                                                                "/projet/" +
+                                                                                "slug"
+                                                                        ),
+                                                                    "name",
+                                                                    "width=800,height=600"
+                                                                );
+                                                            }
+                                                        }}
+                                                    ></i>
+                                                </span>
+                                                {"   "}
+                                                <span className="d-inline-block me-3 my-1">
+                                                    <i
+                                                        class="fa-solid fa-envelope fa-3x"
+                                                        title="Partager par Email"
+                                                        type="button"
+                                                        style={{
+                                                            color: "#4267B2",
+                                                        }}
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            window.open(
+                                                                "mailto:?subject=Projet Crowfunding&body=" +
+                                                                    SITE_URL +
+                                                                    "/projet/" +
+                                                                    "slug"
+                                                            );
+                                                        }}
+                                                    ></i>
+                                                </span>
+                                                {"   "}
+                                                <span className="d-inline-block me-3 my-1">
+                                                    <i 
+                                                        class="fa-solid fa-link fa-3x"
+                                                        title="Copier le lien"
+                                                        type="button"
+                                                        data-bs-dismiss="modal"
+                                                        style={{
+                                                            color: "#4267B2",
+                                                        }}
+                                                        onClick={(e) => {
+                                                            e.preventDefault()
+                                                            navigator.clipboard.writeText(SITE_URL+"/projet/slug")}}></i>
+                                                </span>
                                             </div>
                                             <div class="modal-footer">
                                                 <button
