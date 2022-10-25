@@ -23,6 +23,7 @@ class AuthController extends Controller
             'commune_id' => 'required|integer',
             'password' => 'required|string|min:8',
             //'type' => 'integer',
+            'status' => 'required|string|max:255',
         ]);
         if ($validator->fails())
         {

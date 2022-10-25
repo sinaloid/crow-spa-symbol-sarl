@@ -13,13 +13,21 @@ const Register = () => {
     const [numero, setNumero] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [status,setStatus] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const [isRegister, setRegister] = useState(false);
     const navigate = useNavigate();
     const [selected, setSelected] = useState([]);
     const [options, setOptions] = useState([]);
-
+    const tabStatus = [
+        {label:'Particulier'},
+        {label:'Entrepriser'},
+        {label:'Association'},
+        {label:'Autre'},
+    ]
+    const [iclasse, setClasse] = useState('fa-eye')
+    const [itype, settype] = useState('password')
     useEffect(()=>{
       apiClient
           .get("autocompleteCommune")
@@ -54,6 +62,7 @@ const Register = () => {
           email: email,
           commune: selected[0].id,
           password: password,
+          status: status[0].label
       })*/
         apiClient
             .post("register", {
@@ -61,6 +70,7 @@ const Register = () => {
                 numero: numero,
                 email: email,
                 commune_id: selected[0].id,
+                status: status[0].label,
                 password: password,
             })
             .then((res) => {
@@ -128,6 +138,16 @@ const Register = () => {
                             />
                         </div>
                         <div className="input-field">
+                            <i class="fa-solid fa-users"></i>
+                            <Typeahead
+                                id="basic"
+                                onChange={setStatus}
+                                options={tabStatus}
+                                placeholder="Sélectionnez votre status"
+                                selected={status}
+                            />
+                        </div>
+                        <div className="input-field">
                             <i className="fa-solid fa-location-pin"></i>
                             <Typeahead
                                 id="basic"
@@ -137,11 +157,28 @@ const Register = () => {
                                 selected={selected}
                             />
                         </div>
-
                         <div className="input-field">
                             <i className="fas fa-lock"></i>
+                            <i
+                                className={`fa-solid ${iclasse}`}
+                                style={{
+                                    position: "absolute",
+                                    right: "8%",
+                                    top: "0",
+                                }}
+                                onClick={(e)=>{
+                                    e.preventDefault()
+                                    if(iclasse != 'fa-eye'){
+                                        setClasse('fa-eye')
+                                        settype('password')
+                                    }else{
+                                        setClasse('fa-eye-slash')
+                                        settype('text')
+                                    }
+                                }}
+                            ></i>
                             <input
-                                type="password"
+                                type={itype}
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="Password"
