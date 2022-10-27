@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string("nom_categorie")->unique();
-            $table->integer("nombre_produit")->default('0');
+            $table->integer("nombre_projet")->default('0');
             $table->string("slug");
             $table->timestamps();
         });

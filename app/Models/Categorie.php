@@ -11,7 +11,7 @@ class Categorie extends Model
 
     protected $fillable =[
         'nom_categorie',
-        'nombre_produit',
+        'nombre_projet',
         'slug'
     ];
 

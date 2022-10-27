@@ -5,14 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Projet extends Model
 {
     use HasFactory;
     protected $fillable =[
         'libelle',
-        'sku',
-        'stock',
-        'prix',
+        'montant_attendu',
+        'montant_recolte',
+        'url_video',
+        'nbr_contribution',
+        'nbr_question',
+        'date_debut',
+        'date_fin',
         'description',
         'categorie_id',
         'user_id',

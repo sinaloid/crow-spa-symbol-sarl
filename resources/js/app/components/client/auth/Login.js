@@ -67,7 +67,7 @@ const Login = () => {
                         <div className="input-field">
                             <i className="fas fa-user"></i>
                             <input
-                                type="text"
+                                type="email"
                                 placeholder="Votre email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}

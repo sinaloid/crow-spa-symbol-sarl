@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string("type");
             $table->timestamps();
 
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')
+            $table->unsignedBigInteger('projet_id')->unique();
+            $table->foreign('projet_id')
                     ->references('id')
-                    ->on('products')
+                    ->on('projets')
                     ->onDelete('restrict')
                     ->onUpdate('restrict');
         });

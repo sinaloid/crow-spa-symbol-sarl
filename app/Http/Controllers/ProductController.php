@@ -8,7 +8,7 @@ use PHPUnit\Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\Categorie;
-use App\Models\Product;
+use App\Models\Projet;
 use App\Models\Marque;
 use App\Models\Image;
 use App\Models\Compteur;
@@ -28,8 +28,14 @@ class ProductController extends Controller
      */
     public function index()
     {
+        /*$fdate = $request->Fdate;
+$tdate = $request->Tdate;
+$datetime1 = new DateTime($fdate);
+$datetime2 = new DateTime($tdate);
+$interval = $datetime1->diff($datetime2);
+$days = $interval->format('%a');*/
         try {
-            $products = Product::orderBy('created_at', 'DESC')->get();
+            $products = Projet::orderBy('created_at', 'DESC')->get();
             $datas = [];
             foreach($products as $product){
                 array_push($datas,[
@@ -57,7 +63,7 @@ class ProductController extends Controller
     public function getProduitAndCategorie()
     {
         try {
-            $products = Product::orderBy('created_at', 'DESC')->get();
+            $products = Projet::orderBy('created_at', 'DESC')->get();
             $categories = Categorie::orderBy('created_at', 'DESC')->get(["nom_categorie","slug"]);
             $datas = [];
             foreach($products as $product){
@@ -122,7 +128,7 @@ class ProductController extends Controller
         } else {
             try {
                 if(Auth::user()->type == 1 || Auth::user()->type == 2){
-                    $data = Product::create($request->toArray());
+                    $data = Projet::create($request->toArray());
                     foreach($request->file('images') as $image) {
                         $filename = time().rand(1,900). '.'.$image->getClientOriginalExtension();
                         $image->move('uploads/', $filename);
@@ -169,7 +175,7 @@ class ProductController extends Controller
     public function show($slug)
     {
         try {
-            $data = Product::where('slug',$slug)->get();
+            $data = Projet::where('slug',$slug)->get();
             if(isset($data)){
                 return response()->json([
                     'status' => 200,
@@ -221,13 +227,16 @@ class ProductController extends Controller
             ]);
         } else {
             try {
-                $data = Product::where('slug',$slug)->first();
+                $data = Projet::where('slug',$slug)->first();
                 if(isset($data) && (Auth::id() == $data->user_id || Auth::user()->type == 2)){
                     $data->libelle = $request->get('libelle');
-                    $data->sku = $request->get('sku');
-                    $data->stock = $request->get('stock');
-                    $data->prix = $request->get('prix');
+                    $data->montant_attendu = $request->get('montant_attendu');
+                    $data->montant_recolte = $request->get('montant_recolte');
+                    $data->url_video = $request->get('url_video');
                     $data->description = $request->get('description');
+                    $data->nbr_question = $request->get('nbr_question');
+                    $data->date_debut = $request->get('date_debut');
+                    $data->date_fin = $request->get('date_fin');
                     $data->categorie_id = $request->get('categorie_id');
                     $data->update();
                     foreach($request->file('images') as $image) {
@@ -268,7 +277,7 @@ class ProductController extends Controller
     public function destroy($slug)
     {
         try {
-            $data = Product::where('slug',$slug);
+            $data = Projet::where('slug',$slug);
             $tmp = $data->first();
             if(isset($tmp) &&  (Auth::id() == $tmp->user_id || Auth::user()->type == 2)){
                 $cmpt = Compteur::get()->first();

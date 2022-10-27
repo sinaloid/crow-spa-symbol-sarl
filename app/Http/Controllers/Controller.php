@@ -12,7 +12,7 @@ use App\Models\Province;
 use App\Models\Commune;
 use App\Models\User;
 use App\Models\Marque;
-use App\Models\Product;
+use App\Models\Projet;
 use App\Models\VenteRecommandation;
 use App\Models\Reduction;
 use App\Models\Compteur;
@@ -141,7 +141,7 @@ class Controller extends BaseController
         $total = 0;
 
         foreach($produits as $produit){
-            $prod  = Product::where('slug',$produit->id)->first();
+            $prod  = Projet::where('slug',$produit->id)->first();
             //dd($prod);
             $cmdDetail = [
                 'prix'=> $prod->prix,
@@ -172,9 +172,9 @@ class Controller extends BaseController
             $temp = Reduction::where('date', '>=', Carbon::now())->orderBy('created_at', 'DESC')->get();
             $reduction = $this->listProduct($temp,"reduction");
             
-            $temp = Product::orderBy('updated_at', 'desc')->paginate(8);
+            $temp = Projet::orderBy('updated_at', 'desc')->paginate(8);
             $nouveau = $this->listProduct($temp,"product");
-            $temp = Product::orderBy('updated_at', 'desc')->get();
+            $temp = Projet::orderBy('updated_at', 'desc')->get();
             $all = $this->listProduct($temp,"product");
 
             $marque = Marque::all();
@@ -268,7 +268,7 @@ class Controller extends BaseController
     public function get($slug)
     {
         try {
-            $data = Product::where('slug',$slug)->first();
+            $data = Projet::where('slug',$slug)->first();
             if(isset($data)){
                 $tmp = [
                     "libelle" => $data->libelle,
@@ -339,7 +339,7 @@ class Controller extends BaseController
             $user->save();
             $actu = $user->type;
 
-            $message = ($request['type'] === 1) ? 'mode vendeur': $message;
+            $message = ($request['type'] === 1) ? 'mode  invertisseur ou pourteur de projet': $message;
             $message = ($request['type'] === 2) ? 'mode administrateur': $message;
             $this->setUserCompteur($prece, $actu);
             return response()->json($message,200);

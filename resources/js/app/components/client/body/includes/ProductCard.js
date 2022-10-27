@@ -55,9 +55,9 @@ const ProductCard = ({ data, idx }) => {
           alt={data.image}
           loading="lazy"
         />
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between" style={{fontSize:"0.75rem"}}>
             <div className="product-price py-2 text-primary">
-            106 Questions
+            106 Commentaires
               {/*<span className="text-accent text-bold">
                 <small></small>
               </span>*/}
