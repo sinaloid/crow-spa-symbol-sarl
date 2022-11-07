@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('paiements', function (Blueprint $table) {
+        Schema::create('actualites', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
-            $table->string('slug');
+            $table->text('actualite')->nullable();
+            $table->string('nom_image')->nullable();
             $table->timestamps();
 
             $table->unsignedBigInteger('projet_id')->unique();
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paiements');
+        Schema::dropIfExists('actualites');
     }
 };

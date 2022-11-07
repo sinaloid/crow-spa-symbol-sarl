@@ -13,7 +13,7 @@ use App\Models\Commune;
 use App\Models\User;
 use App\Models\Marque;
 use App\Models\Projet;
-use App\Models\VenteRecommandation;
+use App\Models\ValidationRecommandation;
 use App\Models\Reduction;
 use App\Models\Compteur;
 use App\Models\Commande;
@@ -160,33 +160,33 @@ class Controller extends BaseController
     public function getNumeroCommande(){
         return "SYM-".date("j")."".date("m")."".date("y")."".date("h")."".date("m")."".date("s");
     }
-    public function productAll(){
+    public function projetAll(){
         try {
-            $temp = VenteRecommandation::where("type","Meilleure vente")->orderBy('updated_at', 'desc')->get();
-            $meilleurVente = $this->listProduct($temp);
+            $temp = ValidationRecommandation::where("type","Projet à la une")->orderBy('updated_at', 'desc')->get();
+            $projetALaUne = $this->listProjet($temp);
 
-            
-            $temp = VenteRecommandation::where("type","Produit recommandé")->orderBy('updated_at', 'desc')->paginate(8);
-            $recommandation = $this->listProduct($temp);
+            $temp = ValidationRecommandation::where("type","Projet financé")->orderBy('updated_at', 'desc')->paginate(8);
+           $projetFinance = $this->listProjet($temp);
 
-            $temp = Reduction::where('date', '>=', Carbon::now())->orderBy('created_at', 'DESC')->get();
-            $reduction = $this->listProduct($temp,"reduction");
+            /*$temp = Reduction::where('date', '>=', Carbon::now())->orderBy('created_at', 'DESC')->get();
+            $reduction = $this->listProjet($temp,"reduction");*/
             
             $temp = Projet::orderBy('updated_at', 'desc')->paginate(8);
-            $nouveau = $this->listProduct($temp,"product");
+            $nouveau = $this->listProjet($temp,"projet");
+            //dd($temp);
             $temp = Projet::orderBy('updated_at', 'desc')->get();
-            $all = $this->listProduct($temp,"product");
+            $all = $this->listProjet($temp,"projet");
 
-            $marque = Marque::all();
+            //$marque = Marque::all();
 
             if(isset($nouveau)){
                 return response()->json([
                     'status' => 200,
-                    'marque' => $marque,
-                    'meilleurVente' => $meilleurVente,
-                    'recommandation' => $recommandation,
-                    'reduction' => $reduction,
-                    'nouveau' => $nouveau,
+                    //'marque' => $marque,
+                    'projetALaUne' => $projetALaUne,
+                    'projetFinance' => $projetFinance,
+                    //'reduction' => $reduction,
+                    //'nouveau' => $nouveau,
                     'all' => $all,
                 ]);
             }
@@ -218,25 +218,33 @@ class Controller extends BaseController
          }
     }
 
-    public function listProduct($temp, $type = "reduction"){
+    public function listProjet($temp, $type = "reduction"){
         $datas = [];
 
-        if($type == "product"){
+        if($type == "projet"){
             foreach($temp as $tmp){
+                $created = new Carbon($tmp->date_fin);
+                $now = Carbon::now();
+                $difference = ($created->diff($now)->days < 1) ? 'today': $created->diffInDays($now);
+
                 array_push($datas,[
                     "libelle" => $tmp->libelle,
-                    "prix" => $tmp->prix,
+                    "montant_recolte" => $tmp->montant_recolte,
+                    "montant_attendu" => $tmp->montant_attendu,
                     "image" => ($tmp->images()->first() != null) ? $tmp->images()->first()->nom_image: '',
                     "slug" => $tmp->slug,
                     "categorie" => $tmp->categorie->nom_categorie,
-                    //"description" => $tmp->product->description,
+                    "jour_restant" => $difference,
+                    "commentaire" => 0,//$tmp->nbr_commentaire,
+                    "contribution" => $tmp->nbr_contribution,
+                    "description" => $tmp->description,
                 ]);
             }
 
             return $datas;
         }
 
-        if($type == "reduction"){
+        /*if($type == "reduction"){
             foreach($temp as $tmp){
                 array_push($datas,[
                     "libelle" => $tmp->product->libelle,
@@ -249,16 +257,31 @@ class Controller extends BaseController
             }
 
             return $datas;
-        }
+        }*/
+
+        /*$fdate = $request->Fdate;
+        $tdate = $request->Tdate;
+        $datetime1 = new DateTime($fdate);
+        $datetime2 = new DateTime($tdate);
+        $interval = $datetime1->diff($datetime2);
+        $days = $interval->format('%a');*/
 
         foreach($temp as $tmp){
+            $created = new Carbon($tmp->projet->date_fin);
+            $now = Carbon::now();
+            $difference = ($created->diff($now)->days < 1) ? 'today': $created->diffInDays($now);
+    
             array_push($datas,[
-                "libelle" => $tmp->product->libelle,
-                "prix" => $tmp->product->prix,
-                "image" => ($tmp->product->images()->first() != null) ? $tmp->product->images()->first()->nom_image: '', 
-                "slug" => $tmp->product->slug,
-                "categorie" => $tmp->product->categorie->nom_categorie,
-                //"description" => $tmp->product->description,
+                "libelle" => $tmp->projet->libelle,
+                "montant_recolte" => $tmp->projet->montant_recolte,
+                "montant_attendu" => $tmp->projet->montant_attendu,
+                "image" => ($tmp->projet->images()->first() != null) ? $tmp->projet->images()->first()->nom_image: '', 
+                "slug" => $tmp->projet->slug,
+                "categorie" => $tmp->projet->categorie->nom_categorie,
+                "jour_restant" => $difference,
+                "commentaire" => $tmp->projet->nbr_commentaire,
+                "contribution" => $tmp->projet->nbr_contribution,
+                "description" => $tmp->projet->description,
             ]);
         }
 
@@ -269,21 +292,26 @@ class Controller extends BaseController
     {
         try {
             $data = Projet::where('slug',$slug)->first();
+            $created = new Carbon($data->date_fin);
+            $now = Carbon::now();
+            $difference = ($created->diff($now)->days < 1) ? 'today': $created->diffInDays($now);
+
             if(isset($data)){
                 $tmp = [
                     "libelle" => $data->libelle,
-                    "prix" => $data->prix,
+                    "montant_attendu" => $data->montant_attendu,
+                    "montant_recolte" => $data->montant_recolte,
                     "image" => $data->images()->first()->nom_image,
-                    "reduction" => 0,
                     "slug" => $data->slug,
+                    "jour_restant" => $difference,
+                    "contribution" => $data->nbr_contribution,
+                    "slogan" => $data->slogan,
+                    "url_video" => $data->url_video,
+                    "promoteur" => $data->user()->first()->nom,
                     "categorie" => $data->categorie->nom_categorie,
                     "description" => $data->description,
                 ];
-                $data = $data->reduction()->first();
-                if(isset($data)){
-                    $tmp['reduction'] = $data->pourcentage;
-                    $tmp['prix'] = $tmp['prix'] * (1 - $data->pourcentage/100);
-                }
+                
                 return response()->json([
                     'status' => 200,
                     'response' => $tmp
@@ -352,10 +380,10 @@ class Controller extends BaseController
     public function setUserCompteur($prece,$actu){
         $cmp = Compteur::get()->first();
         if($prece == 0){
-            $cmp->nombre_acheteur--;
+            $cmp->nombre_investisseur--;
             $cmp->save();
         }elseif($prece == 1){
-            $cmp->nombre_vendeur--;
+            $cmp->nombre_promoteur--;
             $cmp->save();
         }elseif($prece == 2){
             $cmp->nombre_administrateur--;
@@ -363,10 +391,10 @@ class Controller extends BaseController
         }
 
         if($actu == 0){
-            $cmp->nombre_acheteur++;
+            $cmp->nombre_investisseur++;
             $cmp->save();
         }elseif($actu == 1){
-            $cmp->nombre_vendeur++;
+            $cmp->nombre_promoteur++;
             $cmp->save();
         }elseif($actu  == 2){
             $cmp->nombre_administrateur++;

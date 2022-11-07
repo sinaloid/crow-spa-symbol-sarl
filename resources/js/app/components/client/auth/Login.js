@@ -9,14 +9,14 @@ import url from "../../../url";
 import Loading from "../../Loading";
 
 const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("ounoid@gmail.com");
+    const [password, setPassword] = useState("12345678");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const authCtx = useContext(AppContext);
     const { user, onUserChange } = authCtx;
     const navigate = useNavigate();
-    const [iclasse, setClasse] = useState('fa-eye')
+    const [iclasse, setClasse] = useState('fa-eye-slash')
     const [itype, settype] = useState('password')
 
     const handleSubmit = (e) => {
@@ -74,7 +74,7 @@ const Login = () => {
                             />
                         </div>
                         <div className="input-field">
-                            <i className="fas fa-lock"></i>
+                            <i className="fas fa-lock-"></i>
                             <i
                                 className={`fa-solid ${iclasse}`}
                                 style={{
@@ -86,10 +86,10 @@ const Login = () => {
                                     e.preventDefault()
                                     if(iclasse != 'fa-eye'){
                                         setClasse('fa-eye')
-                                        settype('password')
+                                        settype('text')
                                     }else{
                                         setClasse('fa-eye-slash')
-                                        settype('text')
+                                        settype('password')
                                     }
                                 }}
                             ></i>

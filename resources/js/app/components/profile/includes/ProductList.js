@@ -18,7 +18,7 @@ const ProductList = () => {
     const [datas, setDatas] = useState([]);
     useEffect(() => {
         apiClient
-            .get("product", {
+            .get("projet", {
                 headers: { Authorization: `Bearer ${user.token}` },
             })
             .then((res) => {
@@ -125,9 +125,8 @@ const ProductList = () => {
                             <th scope="col">N°</th>
                             <th scope="col">Libellé</th>
                             <th scope="col">Image</th>
-                            <th scope="col">Stock</th>
-                            <th scope="col">Propriétaire</th>
-                            <th scope="col">Prix</th>
+                            <th scope="col">Promoteur</th>
+                            <th scope="col">Montant attendu</th>
                             <th scope="col">Categories</th>
                             {/**<th scope="col">Actions</th> */}
                         </tr>
@@ -147,9 +146,6 @@ const ProductList = () => {
                                             src={`https://source.unsplash.com/random/800x800/?product=${idx}`}
                                             alt=""
                                         />
-                                    </td>
-                                    <td>
-                                        {data.stock}
                                     </td>
                                     <td>{data.vendeur}</td>
                                     <td>

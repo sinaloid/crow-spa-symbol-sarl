@@ -21,7 +21,8 @@ const CustomerTable = ({clientType}) => {
     const [editeSlug, setEditeSlug] = useState([]);
     const [refresh, setRefresh] = useState([]);
     const [datas, setDatas] = useState([]);
-
+    const [status,setStatus] = useState("");
+    
     useEffect(() => {
         apiClient
             .get(clientType, {
@@ -60,7 +61,8 @@ const CustomerTable = ({clientType}) => {
                     nom: nom,
                     email: email,
                     numero: numero,
-                    type: role == "vendeur" ? 1 : 0,
+                    type: role == "promoteur" ? 1 : 0,
+                    status: status,
                     commune_id: selected[0].id,
                     password: password,
                 },
@@ -95,7 +97,8 @@ const CustomerTable = ({clientType}) => {
                     nom: nom,
                     email: email,
                     numero: numero,
-                    type: role == "vendeur" ? 1 : 0,
+                    type: role == "promoteur" ? 1 : 0,
+                    status: status,
                     commune_id: selected[0],
                     password: password,
                 },
@@ -122,11 +125,12 @@ const CustomerTable = ({clientType}) => {
 
     const setDataEdite = (data) => {
         console.log(data);
-        setImage(data.image);
+        //setImage(data.image);
         setNom(data.nom);
         setEmail(data.email);
         setNumero(data.numero);
-        setRole(data.type == 1 ? "vendeur" : "acheteur");
+        setRole(data.type == 1 ? "promoteur" : "investisseur");
+        setStatus(data.status)
         setSelected([data.commune]);
         setPassword(data.password);
         setEditeSlug(data.id);
@@ -156,6 +160,7 @@ const CustomerTable = ({clientType}) => {
         setEmail([]);
         setNumero([]);
         setRole([]);
+        setStatus([]);
         setCommune([]);
         setSelected([]);
         setPassword([]);
@@ -254,8 +259,27 @@ const CustomerTable = ({clientType}) => {
                                     }}
                                 >
                                     <option>Sélectionnez le role</option>
-                                    <option value="acheteur">Acheteur</option>
-                                    <option value="vendeur">Vendeur</option>
+                                    <option value="investisseur">Investisseur</option>
+                                    <option value="promoteur">Promoteur</option>
+                                </select>
+                            </div>
+                            <div className="col-12">
+                                <label htmlFor="status" className="form-label">
+                                    Status
+                                </label>
+                                <select
+                                    id="status"
+                                    className="form-select"
+                                    value={status}
+                                    onChange={(e) => {
+                                        setStatus(e.target.value);
+                                    }}
+                                >
+                                    <option>Sélectionnez le status</option>
+                                    <option value="particulier">Particulier</option>
+                                    <option value="entrepriser">Entrepriser</option>
+                                    <option value="association">Association</option>
+                                    <option value="autre">Autre</option>
                                 </select>
                             </div>
                             <div className="col-12">
@@ -308,7 +332,7 @@ const CustomerTable = ({clientType}) => {
                 <div className="modal-dialog modal-dialog-centered modal-xl">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h4 className="modal-title">Editer {(clientType == 'acheteur') ? "l'"+clientType : "le "+clientType}</h4>
+                            <h4 className="modal-title">Editer {(clientType == 'investisseur') ? "l'"+clientType : "le "+clientType}</h4>
                             <button
                                 type="button"
                                 className="btn-close"
@@ -342,7 +366,7 @@ const CustomerTable = ({clientType}) => {
                                     type="text"
                                     className="form-control"
                                     id="image"
-                                    value={image}
+                                    //value={image}
                                     onChange={(e) => {
                                         setImage(e.target.value);
                                     }}
@@ -393,8 +417,27 @@ const CustomerTable = ({clientType}) => {
                                     }}
                                 >
                                     <option>Sélectionnez le role</option>
-                                    <option value="acheteur">Acheteur</option>
-                                    <option value="vendeur">Vendeur</option>
+                                    <option value="investisseur">Investisseur</option>
+                                    <option value="promoteur">Promoteur</option>
+                                </select>
+                            </div>
+                            <div className="col-12">
+                                <label htmlFor="status" className="form-label">
+                                    Status
+                                </label>
+                                <select
+                                    id="status"
+                                    className="form-select"
+                                    value={status}
+                                    onChange={(e) => {
+                                        setStatus(e.target.value);
+                                    }}
+                                >
+                                    <option>Sélectionnez le status</option>
+                                    <option value="particulier">Particulier</option>
+                                    <option value="entrepriser">Entrepriser</option>
+                                    <option value="association">Association</option>
+                                    <option value="autre">Autre</option>
                                 </select>
                             </div>
                             <div className="col-12">
@@ -477,8 +520,8 @@ const CustomerTable = ({clientType}) => {
                                     {data.type == 2
                                         ? "Administrateur"
                                         : data.type == 1
-                                        ? "Vendeur"
-                                        : "Acheteur"}
+                                        ? "Promoteur"
+                                        : "Investisseur"}
                                 </td>
                                 <td>{data.commune}</td>
                                 <td>

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use PHPUnit\Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use App\Models\Commande;
+use App\Models\Investissement;
 use App\Models\CommandeDetail;
 use App\Models\Product;
 use App\Models\User;
@@ -15,7 +15,7 @@ use App\Models\Compteur;
 use App\Models\Paiement;
 use Carbon\Carbon;
 
-class CommandeController extends Controller
+class InvestissementController extends Controller
 {
     public function __construct()
     {
@@ -29,7 +29,7 @@ class CommandeController extends Controller
     public function index()
     {
         try {
-            $datas = Commande::where("etat_commande","enregistrer")->orderBy('created_at', 'DESC')->get();
+            $datas = Investissement::where("etat_commande","enregistrer")->orderBy('created_at', 'DESC')->get();
             //$datas = Commande::orderBy('created_at', 'DESC')->get();
             $acheteurs = User::orderBy('created_at', 'DESC')->get();
             $tmp = [];
@@ -99,7 +99,7 @@ class CommandeController extends Controller
         ];
         //dd($request->all());
         if($cmdSlug === "undefined"){
-            $cmdSave = Commande::create($cmd);
+            $cmdSave = Investissement::create($cmd);
             //$cmdId = $cmdSave->id;
             $total = $this->createCommandeDetail($produits, $cmdSave->id);
             //dd($total);
@@ -112,7 +112,7 @@ class CommandeController extends Controller
                 'response' => $cmdSave->prix_total 
             ],200);
         }else{
-            $cmd = Commande::where('slug',$cmdSlug)->first();
+            $cmd = Investissement::where('slug',$cmdSlug)->first();
             if(isset($cmd)){
                 $cmdDetail = $cmd->commandeDetails()->first();
                 $cmdId = $cmd->id;
@@ -250,7 +250,7 @@ class CommandeController extends Controller
                 if(Auth::user()->type == 2){
                     $request['numero_commande'] = $this->getNumeroCommande();
                     $request['prix_total'] = "0";
-                    $data = Commande::create($request->toArray());
+                    $data = Investissement::create($request->toArray());
                     return response()->json([
                         'status' => 200,
                         'response' => 'Création de données réussies'//$data
@@ -281,7 +281,7 @@ class CommandeController extends Controller
     {
         try {
             //$cmd = Commande::where('slug',$slug);
-            $data = Commande::where('slug',$slug)->first();
+            $data = Investissement::where('slug',$slug)->first();
             if(isset($data)){
                 $user = [
                     'type' => $data->user->type,
@@ -343,7 +343,7 @@ class CommandeController extends Controller
             ]);
         } else {
             try {
-                $data = Commande::where('id',$slug)->first();
+                $data = Investissement::where('id',$slug)->first();
                 if(isset($data) && Auth::user()->type == 2){
                     $data->user_id = $request->get('user_id');
                     $data->prix_total = 788;
@@ -378,7 +378,7 @@ class CommandeController extends Controller
     public function destroy($slug)
     {
         try {
-            $data = Commande::where('id',$slug);
+            $data = Investissement::where('id',$slug);
             $tmp = $data->first();
             if(isset($tmp) &&  Auth::user()->type == 2){
                 $data->delete();

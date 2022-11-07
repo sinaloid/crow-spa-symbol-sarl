@@ -7,11 +7,11 @@ use Illuminate\Support\Facades\Validator;
 use PHPUnit\Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use App\Models\VenteRecommandation;
-use App\Models\Product;
+use App\Models\ValidationRecommandation;
+use App\Models\Projet;
 
 
-class VenteRecommadationController extends Controller
+class ValidationRecommadationController extends Controller
 {
     public function __construct()
     {
@@ -25,15 +25,16 @@ class VenteRecommadationController extends Controller
     public function index(){
 
         try {
-            $datas = VenteRecommandation::orderBy('created_at', 'DESC')->get();
-            $prod = Product::orderBy('created_at', 'DESC')->get(["libelle","slug"]);
+            $datas = ValidationRecommandation::orderBy('created_at', 'DESC')->get();
+            $prod = Projet::orderBy('created_at', 'DESC')->get(["libelle","slug"]);
             $tmp = [];
+            //dd($datas);
             foreach($datas as $data){
                 array_push($tmp,[
                     "id" => $data->id,
-                    "product_id" => $data->product_id,
-                    "product_nom" => $data->product->libelle,
-                    "product_slug" => $data->product->slug,
+                    "projet_id" => $data->projet_id,
+                    "projet_nom" => $data->projet->libelle,
+                    "projet_slug" => $data->projet->slug,
                     "type" => $data->type,
                 ]);
             }
@@ -62,17 +63,17 @@ class VenteRecommadationController extends Controller
     public function store(Request $request)
     {
         //$request['slug'] = $this->generateRandomString();
-        $request['product_id'] = Product::where('slug', $request['product_slug'])->first();
-        if(!isset($request['product_id'])){
+        $request['projet_id'] = Projet::where('slug', $request['projet_slug'])->first();
+        if(!isset($request['projet_id'])){
             return response()->json([
                 'status' => 404,
                 'response' => "Un problème vous empêche de continuer: le produit n'exist pas"
             ]);
         }
-        $produitUserId = $request['product_id']->user->id;
+        $produitUserId = $request['projet_id']->user->id;
         
 
-        $request['product_id'] = $request['product_id']->id;
+        $request['projet_id'] = $request['projet_id']->id;
 
         $validator = Validator::make($request->all(), $this->dataToValidate());
         if ($validator->fails()) {
@@ -88,7 +89,7 @@ class VenteRecommadationController extends Controller
             try {
                 
                 if(Auth::user()->type >= 1 && Auth::user()->id == $produitUserId){
-                    $data = VenteRecommandation::create($request->toArray());
+                    $data = ValidationRecommandation::create($request->toArray());
                     return response()->json([
                         'status' => 200,
                         'response' => 'Création de données réussies'
@@ -146,17 +147,17 @@ class VenteRecommadationController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        $request['product_id'] = Product::where('slug', $request['product_slug'])->first();
-        if(!isset($request['product_id'])){
+        $request['projet_id'] = Projet::where('slug', $request['projet_slug'])->first();
+        if(!isset($request['projet_id'])){
             return response()->json([
                 'status' => 404,
                 'response' => "Un problème vous empêche de continuer: le produit n'exist pas"
             ]);
         }
-        $produitUserId = $request['product_id']->user->id;
+        $produitUserId = $request['projet_id']->user->id;
         
 
-        $request['product_id'] = $request['product_id']->id;
+        $request['projet_id'] = $request['projet_id']->id;
         
         $validator = Validator::make($request->all(), $this->dataToValidate("update"));
         if ($validator->fails()) {
@@ -169,10 +170,10 @@ class VenteRecommadationController extends Controller
             ]);
         } else {
             try {
-                $data = VenteRecommandation::where('id',$slug)->first();
+                $data = ValidationRecommandation::where('id',$slug)->first();
                 if(isset($data) && Auth::user()->type >= 1 && Auth::user()->id == $produitUserId){
                     $data->type = $request->get('type');
-                    $data->product_id = $request->get('product_id');
+                    $data->projet_id = $request->get('projet_id');
                     $data->update();
                     return response()->json([
                         'status' => 200,
@@ -202,7 +203,7 @@ class VenteRecommadationController extends Controller
     public function destroy($slug)
     {
         try {
-            $data = VenteRecommandation::where('id',$slug);
+            $data = ValidationRecommandation::where('id',$slug);
             $tmp = $data->first();
             if(isset($tmp) &&  (Auth::id() == $tmp->user_id || Auth::user()->type == 2)){
                 $data->delete();
@@ -227,12 +228,12 @@ class VenteRecommadationController extends Controller
         if($type == "update"){
             return [
                 'type' => 'required|string|max:255',
-                'product_id' => 'required|integer',
+                'projet_id' => 'required|integer',
             ];
         }
         return [
             'type' => 'required|string|max:255',
-            'product_id' => 'required|integer|unique:vente_recommandations',
+            'projet_id' => 'required|integer|unique:validation_recommandations',
         ];
     }
 }

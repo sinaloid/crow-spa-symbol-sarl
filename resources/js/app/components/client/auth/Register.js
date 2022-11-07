@@ -9,10 +9,10 @@ import Loading from "../../Loading";
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 const Register = () => {
-    const [name, setName] = useState("");
-    const [numero, setNumero] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [name, setName] = useState("Dionou Sinali");
+    const [numero, setNumero] = useState("75638203");
+    const [email, setEmail] = useState("Ounoid@gmail.com");
+    const [password, setPassword] = useState("12345678");
     const [status,setStatus] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
@@ -26,7 +26,7 @@ const Register = () => {
         {label:'Association'},
         {label:'Autre'},
     ]
-    const [iclasse, setClasse] = useState('fa-eye')
+    const [iclasse, setClasse] = useState('fa-eye-slash')
     const [itype, settype] = useState('password')
     useEffect(()=>{
       apiClient
@@ -170,10 +170,10 @@ const Register = () => {
                                     e.preventDefault()
                                     if(iclasse != 'fa-eye'){
                                         setClasse('fa-eye')
-                                        settype('password')
+                                        settype('text')
                                     }else{
                                         setClasse('fa-eye-slash')
-                                        settype('text')
+                                        settype('password')
                                     }
                                 }}
                             ></i>

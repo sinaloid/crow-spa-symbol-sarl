@@ -13,20 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('commandes', function (Blueprint $table) {
+        Schema::create('contreparties', function (Blueprint $table) {
             $table->id();
-            $table->string('numero_commande');
-            $table->date('date');
-            $table->double('prix_total');
-            $table->string('etat_livraison');
-            $table->string('etat_commande');
-            $table->string('slug');
+            $table->string('montant_attendu');
+            $table->string('desciption_court');
+            $table->text('desciption_long');
             $table->timestamps();
 
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')
+            $table->unsignedBigInteger('projet_id')->unique();
+            $table->foreign('projet_id')
                     ->references('id')
-                    ->on('users')
+                    ->on('projets')
                     ->onDelete('restrict')
                     ->onUpdate('restrict');
         });
@@ -39,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commandes');
+        Schema::dropIfExists('contreparties');
     }
 };

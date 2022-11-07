@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->string("nom_image")->nullable();;
+            $table->string("nom_image")->nullable();
             $table->timestamps();
 
             $table->unsignedBigInteger('projet_id')->unique();
@@ -25,12 +25,6 @@ return new class extends Migration
                     ->onDelete('restrict')
                     ->onUpdate('restrict');
 
-            $table->unsignedBigInteger('publicite_id')->nullable();;
-            $table->foreign('publicite_id')
-                    ->references('id')
-                    ->on('publicites')
-                    ->onDelete('restrict')
-                    ->onUpdate('restrict');
         });
     }
 

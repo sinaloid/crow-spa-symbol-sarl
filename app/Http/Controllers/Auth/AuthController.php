@@ -38,7 +38,7 @@ class AuthController extends Controller
         $userCompteur = Compteur::get()->first();
         if(isset($userCompteur)){
             $userCompteur->nombre_user++;
-            $userCompteur->nombre_acheteur++;
+            $userCompteur->nombre_investisseur++;
             $userCompteur->save();
         }
         //$token = $user->createToken('Laravel Password Grant Client')->accessToken;

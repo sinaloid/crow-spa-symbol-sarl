@@ -8,12 +8,14 @@ const ProcductTable = () => {
     const authCtx = useContext(AppContext);
     const { user, onUserChange } = authCtx;
     const [libelle, setLibelle] = useState([]);
+    const [slogan, setSlogan] = useState([]);
     const [image, setImage] = useState([]);
     const [deleteImg, setDeleteImg] = useState("");
-    const [sku, setSku] = useState([]);
-    const [stock, setStock] = useState([]);
     const [listCategorie, setListCategorie] = useState([]);
-    const [prix, setPrix] = useState([]);
+    const [montantAttendu, setMontantAttendu] = useState("")
+    const [url_video,setUrlVideo] = useState("")
+    const [date_debut,setDateDebut] = useState("")
+    const [date_fin, setDateFin] = useState("")
     const [description, setDescription] = useState("");
     const [categorie, setCategorie] = useState("");
     const [editeSlug, setEditeSlug] = useState([]);
@@ -22,7 +24,7 @@ const ProcductTable = () => {
     const [datas, setDatas] = useState([]);
     useEffect(() => {
         apiClient
-            .get("productAndCategorie", {
+            .get("projetAndCategorie", {
                 headers: { Authorization: `Bearer ${user.token}` },
             })
             .then((res) => {
@@ -46,9 +48,11 @@ const ProcductTable = () => {
 
         const data = new FormData();
         data.append("libelle", libelle);
-        data.append("sku", sku);
-        data.append("stock", stock);
-        data.append("prix", prix);
+        data.append("slogan", slogan);
+        data.append("montant_attendu", montantAttendu);
+        data.append("url_video", url_video);
+        data.append("date_debut", date_debut);
+        data.append("date_fin", date_fin);
         data.append("description", description);
         data.append("categorie_id", categorie);
         for (let i = 0; i < image.length; i++) {
@@ -56,7 +60,7 @@ const ProcductTable = () => {
         }
         //console.log(data)
         apiClient
-            .post("product", data, {
+            .post("projet", data, {
                 headers: { Authorization: `Bearer ${user.token}` },
             })
             .then((res) => {
@@ -64,12 +68,14 @@ const ProcductTable = () => {
                     notify("success", res.data.response);
                     setRefresh(refresh + 1);
                     setLibelle([]);
+                    setSlogan([]);
                     setImage([]);
-                    setSku([]);
-                    setStock([]);
                     setCategorie([]);
                     setDescription([]);
-                    setPrix([]);
+                    setMontantAttendu('');
+                    setUrlVideo('')
+                    setDateDebut('')
+                    setDateFin('')
                 } else {
                     notify("error", res.data.response);
                     setRefresh(refresh + 1);
@@ -84,36 +90,36 @@ const ProcductTable = () => {
         e.preventDefault();
         const data = new FormData();
         data.append("libelle", libelle);
-        data.append("sku", sku);
-        data.append("stock", stock);
-        data.append("prix", prix);
+        data.append("slogan", slogan);
+        data.append("montant_attendu", montantAttendu);
+        data.append("url_video", url_video);
+        data.append("date_debut", date_debut);
+        data.append("date_fin", date_fin);
         data.append("description", description);
         data.append("categorie_id", categorie);
         for (let i = 0; i < image.length; i++) {
             //console.log(image[i])
             data.append("images[]", image[i]);
         }
-        data.append('_method', 'PATCH')
-        console.log(data)
+        data.append("_method", "PATCH");
+        console.log(data);
         apiClient
-            .post(`product/${editeSlug}`,data,
-                {
-                    headers: { Authorization: `Bearer ${user.token}`,
-                 },
-                    
-                }
-            )
+            .post(`product/${editeSlug}`, data, {
+                headers: { Authorization: `Bearer ${user.token}` },
+            })
             .then((res) => {
                 if (res.data.status === 200) {
                     notify("success", res.data.response);
                     setRefresh(refresh + 1);
                     setLibelle([]);
+                    setSlogan([]);
                     setImage([]);
-                    setSku([]);
-                    setStock([]);
                     setCategorie([]);
                     setDescription([]);
-                    setPrix([]);
+                    setMontantAttendu('');
+                    setUrlVideo('')
+                    setDateDebut('')
+                    setDateFin('')
                 } else {
                     notify("error", res.data.response);
                     setRefresh(refresh + 1);
@@ -125,20 +131,21 @@ const ProcductTable = () => {
     };
 
     const setDataEdite = (data) => {
-        console.log(data);
+        //console.log(data);
         setLibelle(data.libelle);
+        setSlogan(data.slogan);
+        setMontantAttendu(data.montant_attendu);
+        setUrlVideo(data.url_video)
+        setDateDebut(data.date_debut)
+        setDateFin(data.date_fin)
         setImage(data.image);
-        setSku(data.sku);
-        setStock(data.stock);
         setCategorie(data.categorie_slug);
-        setPrix(data.prix);
         setDescription(data.description);
-        setImage(data.image);
         setEditeSlug(data.slug);
     };
     const onDelete = (slug) => {
         apiClient
-            .delete(`product/${slug}`, {
+            .delete(`projet/${slug}`, {
                 headers: { Authorization: `Bearer ${user.token}` },
             })
             .then((res) => {
@@ -189,7 +196,7 @@ const ProcductTable = () => {
                 <div className="modal-dialog modal-dialog-centered modal-xl">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h4 className="modal-title">Produit</h4>
+                            <h4 className="modal-title">Projet</h4>
                             <button
                                 type="button"
                                 className="btn-close"
@@ -224,34 +231,16 @@ const ProcductTable = () => {
                                     htmlFor="validationCustom01"
                                     className="form-label"
                                 >
-                                    SKU
+                                    Slogan
                                 </label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    value={sku}
+                                    value={slogan}
                                     onChange={(e) => {
-                                        setSku(e.target.value);
+                                        setSlogan(e.target.value);
                                     }}
-                                    required
-                                />
-                            </div>
-
-                            <div className="col-12">
-                                <label
-                                    htmlFor="validationCustom01"
-                                    className="form-label"
-                                >
-                                    Stock
-                                </label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    value={stock}
-                                    onChange={(e) => {
-                                        setStock(e.target.value);
-                                    }}
-                                    required
+                                    
                                 />
                             </div>
                             <div className="col-12">
@@ -259,14 +248,65 @@ const ProcductTable = () => {
                                     htmlFor="validationCustom01"
                                     className="form-label"
                                 >
-                                    Prix
+                                    Montant attendu
                                 </label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    value={prix}
+                                    value={montantAttendu}
                                     onChange={(e) => {
-                                        setPrix(e.target.value);
+                                        setMontantAttendu(e.target.value);
+                                    }}
+                                    required
+                                />
+                            </div>
+                            <div className="col-12">
+                                <label
+                                    htmlFor="validationCustom01"
+                                    className="form-label"
+                                >
+                                    Lien de la video d'explication
+                                </label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    value={url_video}
+                                    onChange={(e) => {
+                                        setUrlVideo(e.target.value);
+                                    }}
+                                    required
+                                />
+                            </div>
+                            <div className="col-12">
+                                <label
+                                    htmlFor="validationCustom01"
+                                    className="form-label"
+                                >
+                                    Date de début de la collecte
+                                </label>
+                                <input
+                                    type="date"
+                                    className="form-control"
+                                    value={date_debut}
+                                    onChange={(e) => {
+                                        setDateDebut(e.target.value);
+                                    }}
+                                    required
+                                />
+                            </div>
+                            <div className="col-12">
+                                <label
+                                    htmlFor="validationCustom01"
+                                    className="form-label"
+                                >
+                                    Date de fin de la collecte
+                                </label>
+                                <input
+                                    type="date"
+                                    className="form-control"
+                                    value={date_fin}
+                                    onChange={(e) => {
+                                        setDateFin(e.target.value);
                                     }}
                                     required
                                 />
@@ -345,7 +385,7 @@ const ProcductTable = () => {
                 <div className="modal-dialog modal-dialog-centered modal-xl">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h4 className="modal-title">Editer le produit</h4>
+                            <h4 className="modal-title">Editer le projet</h4>
                             <button
                                 type="button"
                                 className="btn-close"
@@ -378,34 +418,16 @@ const ProcductTable = () => {
                                     htmlFor="validationCustom01"
                                     className="form-label"
                                 >
-                                    SKU
+                                    Slogan
                                 </label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    value={sku}
+                                    value={slogan}
                                     onChange={(e) => {
-                                        setSku(e.target.value);
+                                        setSlogan(e.target.value);
                                     }}
-                                    required
-                                />
-                            </div>
-
-                            <div className="col-12">
-                                <label
-                                    htmlFor="validationCustom01"
-                                    className="form-label"
-                                >
-                                    Stock
-                                </label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    value={stock}
-                                    onChange={(e) => {
-                                        setStock(e.target.value);
-                                    }}
-                                    required
+                                    
                                 />
                             </div>
                             <div className="col-12">
@@ -413,14 +435,65 @@ const ProcductTable = () => {
                                     htmlFor="validationCustom01"
                                     className="form-label"
                                 >
-                                    Prix
+                                    Montant attendu
                                 </label>
                                 <input
                                     type="text"
                                     className="form-control"
-                                    value={prix}
+                                    value={montantAttendu}
                                     onChange={(e) => {
-                                        setPrix(e.target.value);
+                                        setMontantAttendu(e.target.value);
+                                    }}
+                                    required
+                                />
+                            </div>
+                            <div className="col-12">
+                                <label
+                                    htmlFor="validationCustom01"
+                                    className="form-label"
+                                >
+                                    Lien de la video d'explication
+                                </label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    value={url_video}
+                                    onChange={(e) => {
+                                        setUrlVideo(e.target.value);
+                                    }}
+                                    required
+                                />
+                            </div>
+                            <div className="col-12">
+                                <label
+                                    htmlFor="validationCustom01"
+                                    className="form-label"
+                                >
+                                    Date de début de la collecte
+                                </label>
+                                <input
+                                    type="date"
+                                    className="form-control"
+                                    value={date_debut}
+                                    onChange={(e) => {
+                                        setDateDebut(e.target.value);
+                                    }}
+                                    required
+                                />
+                            </div>
+                            <div className="col-12">
+                                <label
+                                    htmlFor="validationCustom01"
+                                    className="form-label"
+                                >
+                                    Date de fin de la collecte
+                                </label>
+                                <input
+                                    type="date"
+                                    className="form-control"
+                                    value={date_fin}
+                                    onChange={(e) => {
+                                        setDateFin(e.target.value);
                                     }}
                                     required
                                 />
@@ -456,34 +529,6 @@ const ProcductTable = () => {
                                 >
                                     image
                                 </label>
-                                <div className="w-100">
-                                    {image.map((img, idx) => {
-                                        if(img.nom_image =="")
-                                            return
-                                        return (
-                                            <div key={idx} className="d-inline-block me-2">
-                                                    <img
-                                                        className="m-0 avatar-sm-table"
-                                                        width={64}
-                                                        src={
-                                                            urlImg +
-                                                            "" +
-                                                            img.nom_image
-                                                        }
-                                                        alt=""
-                                                    />
-                                                    <br />
-                                                    <i 
-                                                        className="fa-solid fa-trash" 
-                                                        style={{color:"red"}}
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#deleteImage"
-                                                        onClick={()=>setDeleteImg(img.nom_image)}
-                                                        ></i>
-                                                </div>
-                                        );
-                                    })}
-                                </div>
                                 <input
                                     type="file"
                                     multiple
@@ -527,9 +572,7 @@ const ProcductTable = () => {
                 <div className="modal-dialog modal-dialog-centered">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h4 className="modal-title">
-                                Suppression d'image
-                            </h4>
+                            <h4 className="modal-title">Suppression d'image</h4>
                             <button
                                 type="button"
                                 className="btn-close"
@@ -539,8 +582,10 @@ const ProcductTable = () => {
 
                         <div className="modal-body">
                             <span>
-                                Attention vous sur le point de supprimer l'image ! 
-                            </span><br/>
+                                Attention vous sur le point de supprimer l'image
+                                !
+                            </span>
+                            <br />
                             <span>Voulez vous continuer ?</span>
                         </div>
 
@@ -572,9 +617,10 @@ const ProcductTable = () => {
                         <th scope="col">#</th>
                         <th scope="col">Libellé</th>
                         <th scope="col">Image</th>
-                        <th scope="col">Stock</th>
-                        <th scope="col">Vendeur</th>
-                        <th scope="col">Prix unitaire</th>
+                        <th scope="col">Promoteur</th>
+                        <th scope="col">Montant attendu</th>
+                        <th scope="col">Date de début</th>
+                        <th scope="col">Date de fin</th>
                         <th scope="col">Categorie</th>
                         <th scope="col">Actions</th>
                     </tr>
@@ -589,18 +635,23 @@ const ProcductTable = () => {
                                     <img
                                         className="rounded-circle m-0 avatar-sm-table"
                                         width={24}
-                                        src={ data.image[0] ? data.image[0].nom_image &&
-                                            urlImg +
-                                            "" + data.image[0].nom_image : ''
+                                        src={
+                                            data.image[0]
+                                                ? data.image[0].nom_image &&
+                                                  urlImg +
+                                                      "" +
+                                                      data.image[0].nom_image
+                                                : ""
                                         }
                                         alt=""
                                     />
                                 </td>
-                                <td>{data.stock}</td>
-                                <td>{data.vendeur}</td>
+                                <td>{data.promoteur}</td>
+                                <td>{Intl.NumberFormat().format(data.montant_attendu) +
+                                        " FCFA"}</td>
+                                <td>{data.date_debut}</td>
                                 <td>
-                                    {Intl.NumberFormat().format(data.prix) +
-                                        " FCFA"}
+                                    {data.date_fin}
                                 </td>
                                 <td>{data.categorie}</td>
                                 <td>
@@ -609,6 +660,7 @@ const ProcductTable = () => {
                                         dataEdite={data}
                                         setDataEdite={setDataEdite}
                                         onDelete={onDelete}
+                                        eye="eye"
                                     />
                                 </td>
                             </tr>

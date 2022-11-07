@@ -5,7 +5,7 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import ProductCard from "./includes/ProductCard";
 import { setProduit } from "../../../context/action";
 
-const BestSeller = (datas) => {
+const BestSeller = ({datas, title}) => {
     const options = {
         margin: 16,
         responsiveClass: true,
@@ -52,7 +52,7 @@ const BestSeller = (datas) => {
                 nav
                 {...options}
             >
-                {[...Array(11).keys()].map((data, idx) => {
+                {datas.map((data, idx) => {
                     return <ProductCard key={idx} idx={idx} data={data} />;
                 })}
             </OwlCarousel>
@@ -62,7 +62,7 @@ const BestSeller = (datas) => {
         <section className="row pt-3 pt-md-4">
             {/*<!-- Heading-->*/}
             <div className="d-flex flex-wrap justify-content-between align-items-center pt-1 border-bottom pb-4 mb-4">
-                <h2 className="h3 mb-0 pt-3 me-3 title-1">Les projets financés</h2>
+                <h2 className="h3 mb-0 pt-3 me-3 title-1">{title}</h2>
                 <div className="row pt-3">
                     <a
                         className="btn btn-outline-accent btn-sm"
@@ -75,11 +75,22 @@ const BestSeller = (datas) => {
             </div>
 
             <div className="container-fluid">
-              {
-                //setProduit(datas);
-                //prod()
-                content
-              }
+            {datas && (
+                    <OwlCarousel
+                        items={4}
+                        className="owl-carousel owl-theme"
+                        loop
+                        nav
+                        {...options}
+                    >
+                        {//[...Array(11).keys()].map((data, idx) => {
+                         datas.map((data, idx) => {
+                            return (
+                                <ProductCard key={idx} idx={idx} data={data} />
+                            );
+                        })}
+                    </OwlCarousel>
+                )}
             </div>
         </section>
     );

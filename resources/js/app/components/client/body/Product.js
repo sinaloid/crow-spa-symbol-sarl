@@ -13,11 +13,11 @@ const Produit = () => {
     const [datas, setDatas] = useState([]);
     useEffect(() => {
         apiClient
-            .get(`productAll`)
+            .get(`projetAll`)
             .then((res) => {
                 if (res.status === 200) {
                     setDatas(res.data.all);
-                    console.log(res.data.recommandation);
+                    console.log(res.data.all);
                 } else {
                 }
             })
@@ -226,7 +226,7 @@ const Produit = () => {
                 </div>
 
                 <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
-                    {[...Array(11).keys()].map((data, idx) => {
+                    {datas.map((data, idx) => {
                         return (
                           <ProductCard key={idx} idx={idx} data={data} />
                         );

@@ -14,7 +14,8 @@ class Projet extends Model
         'montant_recolte',
         'url_video',
         'nbr_contribution',
-        'nbr_question',
+        'nbr_commentaire',
+        'slogan',
         'date_debut',
         'date_fin',
         'description',
@@ -33,20 +34,36 @@ class Projet extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function reduction() {
+    /*public function reduction() {
 
         return $this->hasOne(Reduction::class);
-    }
-    public function venteRecommandation() {
+    }*/
+    public function validationRecommandation() {
 
-        return $this->hasOne(VenteRecommandation::class);
+        return $this->hasOne(ValidationRecommandation::class);
     }
 
     public function images() {
         return $this->hasMany(Image::class);
     }
 
-    public function commandeDetails() {
-        return $this->hasMany(CommandeDetail::class);
+    public function detailProjets() {
+        return $this->hasMany(DetailProjet::class);
+    }
+
+    public function contreparties() {
+        return $this->hasMany(Contrepartie::class);
+    }
+
+    public function actualites() {
+        return $this->hasMany(Actualite::class);
+    }
+
+    public function commentaires() {
+        return $this->hasMany(Commentaires::class);
+    }
+
+    public function investissement() {
+        return $this->hasMany(Investissement::class);
     }
 }

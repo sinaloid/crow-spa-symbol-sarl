@@ -13,16 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('paiements', function (Blueprint $table) {
+        Schema::create('investissements', function (Blueprint $table) {
             $table->id();
+            $table->string('numero_invest');
             $table->date('date');
+            $table->double('montant');
+            $table->string('etat_commande');
             $table->string('slug');
             $table->timestamps();
 
-            $table->unsignedBigInteger('projet_id')->unique();
-            $table->foreign('projet_id')
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
                     ->references('id')
-                    ->on('projets')
+                    ->on('users')
                     ->onDelete('restrict')
                     ->onUpdate('restrict');
         });
@@ -35,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paiements');
+        Schema::dropIfExists('investissements');
     }
 };

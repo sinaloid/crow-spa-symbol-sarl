@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class VenteRecommandation extends Model
+class ValidationRecommandation extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'product_id',
+        'projet_id',
         'type'
     ];
 
-    public function product() {
+    public function projet() {
 
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Projet::class);
     }
 }

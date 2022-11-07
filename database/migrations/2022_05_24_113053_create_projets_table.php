@@ -17,10 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('libelle')->unique();;
             $table->string('montant_attendu');
-            $table->string('montont_recolte')->nullable();
+            $table->string('montant_recolte')->default('0');
             $table->string('url_video')->nullable();
-            $table->integer('nbr_contribution')->nullable();
-            $table->integer('nbr_question')->nullable();
+            $table->string('slogan')->nullable();
+            $table->integer('nbr_contribution')->default('0');
+            $table->integer('nbr_commentaire')->default('0');
             $table->Date('date_debut');
             $table->Date('date_fin');
             $table->text('description')->nullable();
@@ -52,6 +53,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('projets');
     }
 };

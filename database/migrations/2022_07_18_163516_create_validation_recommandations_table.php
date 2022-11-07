@@ -13,10 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('paiements', function (Blueprint $table) {
+        Schema::create('validation_recommandations', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
-            $table->string('slug');
+            $table->string("type");
             $table->timestamps();
 
             $table->unsignedBigInteger('projet_id')->unique();
@@ -35,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paiements');
+        Schema::dropIfExists('validation_recommandations');
     }
 };

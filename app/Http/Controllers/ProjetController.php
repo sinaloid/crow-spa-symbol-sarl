@@ -15,7 +15,7 @@ use App\Models\Compteur;
 use Illuminate\Support\Facades\File;
 
 
-class ProductController extends Controller
+class ProjetController extends Controller
 {
     public function __construct()
     {
@@ -28,12 +28,6 @@ class ProductController extends Controller
      */
     public function index()
     {
-        /*$fdate = $request->Fdate;
-$tdate = $request->Tdate;
-$datetime1 = new DateTime($fdate);
-$datetime2 = new DateTime($tdate);
-$interval = $datetime1->diff($datetime2);
-$days = $interval->format('%a');*/
         try {
             $products = Projet::orderBy('created_at', 'DESC')->get();
             $datas = [];
@@ -60,7 +54,7 @@ $days = $interval->format('%a');*/
          }
     }
 
-    public function getProduitAndCategorie()
+    public function getProjetAndCategorie()
     {
         try {
             $products = Projet::orderBy('created_at', 'DESC')->get();
@@ -68,13 +62,14 @@ $days = $interval->format('%a');*/
             $datas = [];
             foreach($products as $product){
                 array_push($datas,[
-                    "vendeur" => $product->user->nom,
+                    "promoteur" => $product->user->nom,
                     "categorie" => $product->categorie->nom_categorie,
                     "categorie_slug" => $product->categorie->slug,
                     "libelle" => $product->libelle,
-                    "sku" => $product->sku,
-                    "stock" => $product->stock,
-                    "prix" => $product->prix,
+                    "montant_attendu" => $product->montant_attendu,
+                    "date_debut" => $product->date_debut,
+                    "date_fin" => $product->date_fin,
+                    "url_video" => $product->url_video,
                     "image" => $product->images()->get('nom_image'),
                     "slug" => $product->slug,
                     "description" => $product->description,
@@ -102,7 +97,7 @@ $days = $interval->format('%a');*/
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
         $request['slug'] = $this->generateRandomString();
         $request['user_id'] = Auth::id();
         $request['image'] = "mmm"; //a supprimer
@@ -135,15 +130,15 @@ $days = $interval->format('%a');*/
         
                         Image::create([
                             'nom_image' => $filename,
-                            'product_id' => $data->id
+                            'projet_id' => $data->id
                         ]);
                     }
                     $cmpt = Compteur::get()->first();
                     if(isset($cmpt)){
-                        $cmpt->nombre_produit++;
+                        $cmpt->nombre_projet++;
                         $cmpt->save();
                         $categorie = Categorie::find($data->categorie_id);
-                        $categorie->nombre_produit++;
+                        $categorie->nombre_projet++;
                         $categorie->save();
                     }
                     return response()->json([
@@ -281,7 +276,7 @@ $days = $interval->format('%a');*/
             $tmp = $data->first();
             if(isset($tmp) &&  (Auth::id() == $tmp->user_id || Auth::user()->type == 2)){
                 $cmpt = Compteur::get()->first();
-                if(isset($cmpt)){
+                /*if(isset($cmpt)){
                     $cmpt->nombre_produit--;
                     $cmpt->nombre_produit = ($cmpt->nombre_produit < 0) ? 0 : $cmpt->nombre_produit;
                     $cmpt->save();
@@ -289,9 +284,9 @@ $days = $interval->format('%a');*/
                     $categorie->nombre_produit++;
                     $categorie->save();
 
-                }
+                }*/
 
-                $reduc = $tmp->reduction();
+                //$reduc = $tmp->reduction();
                 $imgsTodelete = $tmp->images();
                 $imgs = $tmp->images()->get();
                 
@@ -301,7 +296,7 @@ $days = $interval->format('%a');*/
                         File::delete($image_path);
                     }
                 }
-                $reduc->delete();
+               // $reduc->delete();
                 $imgsTodelete->delete();
                 $data->delete();
                 return response()->json([
@@ -366,10 +361,11 @@ $days = $interval->format('%a');*/
             ];
         }
         return [
-            'libelle' => 'required|string|unique:products|max:255',
-            'sku' => 'required|string|unique:products|max:255',
-            'stock' => 'required|string|max:255',
-            'prix' => 'required|string|max:255',
+            'libelle' => 'required|string|unique:projets|max:255',
+            'url_video' => 'required|string|unique:projets|max:255',
+            'date_fin' => 'required|date',
+            'date_debut' => 'required|date',
+            'montant_attendu' => 'required|string|max:255',
             'description' => 'nullable|min:3|max:1000',
             'slug' => 'required|string|max:255',
             'categorie_id' => 'required|integer',

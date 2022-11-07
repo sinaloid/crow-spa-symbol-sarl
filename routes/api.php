@@ -5,11 +5,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\CategorieController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProjetController;
 use App\Http\Controllers\ClientVendeurController;
 use App\Http\Controllers\ReductionController;
-use App\Http\Controllers\CommandeController;
-use App\Http\Controllers\VenteRecommadationController;
+use App\Http\Controllers\InvestissementController;
+use App\Http\Controllers\ValidationRecommadationController;
 use App\Http\Controllers\MarqueController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\Auth\VerificationController;
@@ -55,8 +55,8 @@ Route::group(['middleware' => ['cors', 'json.response']], function () {
 
 
     Route::post('user/role', [Controller::class, 'userRole']);
-    Route::get('productAll', [Controller::class, 'productAll']);
-    Route::get('prod/{slug}', [Controller::class, 'get']);
+    Route::get('projetAll', [Controller::class, 'projetAll']);
+    Route::get('pro/{slug}', [Controller::class, 'get']);
     Route::get('detailcommandeAll/{slug}', [Controller::class, 'detailcommandeAll']);
     Route::get('faqAll', [Controller::class, 'faqAll']);
     Route::post('app/paiement', [Controller::class, 'paiement']);
@@ -73,23 +73,23 @@ Route::middleware(['auth:api'])->group(function () {
 
     Route::apiResources([
         'categorie' => CategorieController::class,
-        'product' => ProductController::class,
+        'projet' => ProjetController::class,
         'clientVendeur' => ClientVendeurController::class,
         'reduction' => ReductionController::class,
-        'commande' => CommandeController::class,
-        'meilleureVR' => VenteRecommadationController::class,
+        'investissement' => InvestissementController::class,
+        'projetVR' => ValidationRecommadationController::class,
         'marque' => MarqueController::class,
         'faq' => FaqController::class,
     ]);
     Route::get('compteur', [Controller::class, 'getCompteur']);
     Route::get('reducterminer', [ReductionController::class, 'terminer']);
-    Route::get('acheteur', [ClientVendeurController::class, 'getAcheteur']);
-    Route::get('vendeur', [ClientVendeurController::class, 'getVendeur']);
+    Route::get('investisseur', [ClientVendeurController::class, 'getInvestisseur']);
+    Route::get('promoteur', [ClientVendeurController::class, 'getPromoteur']);
     Route::get('userCommande', [CommandeController::class, 'userCommande']);
     Route::post('paiement', [CommandeController::class, 'paiement']);
     Route::get('paiement/list', [CommandeController::class, 'paiementList']);
     Route::delete('paiement/detele/{slug}', [CommandeController::class, 'paiementDetele']);
-    Route::delete('image/detele/{img}', [ProductController::class, 'deleteProductImage']);
+    Route::delete('image/detele/{img}', [ProjetController::class, 'deleteProductImage']);
 
 
 });

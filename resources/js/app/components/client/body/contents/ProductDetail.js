@@ -13,11 +13,11 @@ const ProductDetail = () => {
     const [data, setDatas] = useState([]);
     useEffect(() => {
         apiClient
-            .get(`prod/${id}`)
+            .get(`pro/${id}`)
             .then((res) => {
                 if (res.status === 200) {
                     setDatas(res.data.response);
-                    //console.log(res.data.response);
+                    console.log(res.data.response);
                 } else {
                 }
             })
@@ -65,15 +65,17 @@ const ProductDetail = () => {
                     <div className="card">
                         <div className="row p-2 pb-3">
                             <div className="col-12">
-                                <h1 className="text-center">Nom du projet</h1>
-                                <p className="text-center mt-1">Slogan....</p>
+                                <h1 className="text-center">{data.libelle}</h1>
+                                <p className="text-center mt-1">
+                                    {data.slogan}
+                                </p>
                             </div>
                             <div className="col-12 col-lg-8">
                                 <iframe
                                     width="420"
                                     height="315"
                                     className="w-100"
-                                    src="https://www.youtube.com/embed/tgbNymZ7vqY"
+                                    src={data.url_video !="" ? data.url_video : "https://www.youtube.com/embed/tgbNymZ7vqY"}
                                 ></iframe>
                             </div>
                             <div className="col-12 col-lg-4">
@@ -105,64 +107,45 @@ const ProductDetail = () => {
                                         style={{ lineHeight: "140%" }}
                                     >
                                         <div className="d-flex align-items-center">
-                                            51
+                                            {data.contribution}
                                             <br /> contributions
                                         </div>
-                                        11 <br />
+                                        {data.jour_restant + " "} <br />
                                         jours restants
                                     </div>
                                     <hr />
                                     <small className="dis-price text-bold">
-                                        {
-                                            /*Intl.NumberFormat().format(
-                                                        data.prix
-                                                    )*/ "5 000 000" + " FCFA"
-                                        }
+                                        {Intl.NumberFormat().format(
+                                            data.montant_recolte
+                                        ) + " "}
+                                        FCFA
                                     </small>
                                     <div className="progress rounded-0">
                                         <div
                                             className="progress-bar progress-bar-striped progress-bar-animated bg-primary"
-                                            style={{ width: "70%" }}
+                                            style={{
+                                                width:
+                                                    (data.montant_recolte *
+                                                        100) /
+                                                        data.montant_attendu +
+                                                    "%",
+                                            }}
                                         >
-                                            70%
+                                            {(data.montant_recolte * 100) /
+                                                data.montant_attendu}
                                         </div>
                                     </div>
                                     <small className="dis-price">
-                                        {
-                                            /*Intl.NumberFormat().format(
-                                                        data.prix
-                                                    )*/ "70% de "
-                                        }
+                                        {(data.montant_recolte * 100) /
+                                            data.montant_attendu +
+                                            "% de "}
                                     </small>
                                     <small className="text-bold">
-                                        8 000 000 FCFA
+                                        {Intl.NumberFormat().format(
+                                            data.montant_attendu
+                                        ) + " "}
+                                        FCFA
                                     </small>
-
-                                    <div className="mt-4 mb-3">
-                                        <span className="text-uppercase text-muted brand">
-                                            {data.categorie}
-                                        </span>
-                                        <h5 className="text-uppercase">
-                                            {data.libelle}
-                                        </h5>
-                                        {/*<div className="price d-flex flex-row align-items-center">
-                                            <div
-                                                className="ml-2"
-                                            >
-                                                
-                                                70% de 8 000 000 FCFA
-
-                                                <br />
-                                                {data.reduction && (
-                                                    <span>
-                                                        {data.reduction +
-                                                            "% de reduction"}
-                                                    </span>
-                                                )}
-                                            </div>
-                                        </div>*/}
-                                    </div>
-                                    <p className="about">{data.description}</p>
 
                                     <div className="cart mt-4 align-items-center">
                                         <Link
@@ -182,6 +165,29 @@ const ProductDetail = () => {
                                         >
                                             Retour
                                         </Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-12 d-flex">
+                                <div className="d-inline-block me-2">
+                                    <img
+                                        className="rounded-circle m-0 avatar-sm-table circle"
+                                       
+                                        src={`https://source.unsplash.com/random/800x800/?product=1`}
+                                        alt=""
+                                    />
+                                </div>
+                                <div className="d-inline-block" style={{height:'72px'}}>
+                                    <div className="mx-1 text-bold">{data.promoteur}</div>
+                                    <div>
+                                        <div className="d-inline-block mx-1">
+                                            <i class="fa-solid fa-location-dot"></i>{" "}
+                                            Bobo Dioulasso
+                                        </div>{" "}
+                                        <div className="d-inline-block mx-1">
+                                            <i class="fa-sharp fa-solid fa-clipboard-list"></i>{" "}
+                                            {" " + data.categorie}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -296,8 +302,8 @@ const ProductDetail = () => {
                                                         style={{
                                                             color: "#0A66C2",
                                                         }}
-                                                        onClick={(e)=>{
-                                                            e.preventDefault()
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
                                                             window.open(
                                                                 "https://www.linkedin.com/shareArticle?mini=true&summary=africadefis&title=Projet Crowfunding&url=" +
                                                                     encodeURIComponent(
@@ -308,7 +314,6 @@ const ProductDetail = () => {
                                                                 "name",
                                                                 "width=800,height=600"
                                                             );
-                                                            
                                                         }}
                                                     ></i>
                                                 </span>
@@ -375,7 +380,7 @@ const ProductDetail = () => {
                                                 </span>
                                                 {"   "}
                                                 <span className="d-inline-block me-3 my-1">
-                                                    <i 
+                                                    <i
                                                         class="fa-solid fa-link fa-3x"
                                                         title="Copier le lien"
                                                         type="button"
@@ -384,8 +389,13 @@ const ProductDetail = () => {
                                                             color: "#4267B2",
                                                         }}
                                                         onClick={(e) => {
-                                                            e.preventDefault()
-                                                            navigator.clipboard.writeText(SITE_URL+"/projet/slug")}}></i>
+                                                            e.preventDefault();
+                                                            navigator.clipboard.writeText(
+                                                                SITE_URL +
+                                                                    "/projet/slug"
+                                                            );
+                                                        }}
+                                                    ></i>
                                                 </span>
                                             </div>
                                             <div class="modal-footer">

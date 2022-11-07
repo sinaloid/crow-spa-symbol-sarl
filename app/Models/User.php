@@ -59,14 +59,17 @@ class User extends Authenticatable
         return $this->belongsTo(Commune::class);
     }
 
-    public function products() {
+    public function projets() {
 
-        return $this->hasMany(Product::class);
+        return $this->hasMany(projets::class);
     }
 
-    public function commandes() {
+    public function commentaires() {
+        return $this->hasMany(Commentaires::class);
+    }
 
-        return $this->hasMany(Commandes::class);
+    public function investissement() {
+        return $this->hasMany(Investissement::class);
     }
 
 }

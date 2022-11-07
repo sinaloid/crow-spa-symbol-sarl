@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('vente_recommandations', function (Blueprint $table) {
+        Schema::create('faqs_projets', function (Blueprint $table) {
             $table->id();
-            $table->string("type");
+            $table->string("question");
+            $table->string("response");
+            $table->string("slug");
             $table->timestamps();
 
             $table->unsignedBigInteger('projet_id')->unique();
@@ -34,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vente_recommandations');
+        Schema::dropIfExists('faqs_projets');
     }
 };

@@ -23,10 +23,11 @@ const Home = () => {
     const [datas, setDatas] = useState([]);
     useEffect(() => {
         apiClient
-            .get(`productAll`)
+            .get(`projetAll`)
             .then((res) => {
                 if (res.status === 200) {
                     setDatas(res.data);
+                    console.log(res.data)
                 } else {
                 }
             })
@@ -58,18 +59,18 @@ const Home = () => {
             <HowIsWorkVideo />
             <HowIsWork />
 
-            {datas.reduction != [] && (
+            {datas.projetALaUne != [] && (
                 <HomeProduitListCarousel
-                    datas={datas.reduction}
-                    title={"Les projets à la une"}
+                    datas={datas.projetALaUne}
+                    title={"Les projets à la une "}
                 />
             )}
             {datas.marque != [] && <Brand datas={datas.marque} />}
 
-            {datas.meilleurVente != [] && (
+            {datas.all != [] && (
                 <HomeProduitListCarousel
-                    datas={datas.meilleurVente}
-                    title={"Bientôt lancés, suivez-les dès maintenant !"}
+                    datas={datas.all}
+                    title={"Les nouveaux projets !"}
                 />
             )}
 
@@ -80,10 +81,10 @@ const Home = () => {
                         title={"Découvrir le manifesto Ulule"}
                     />
                 )}
-                {datas.nouveau != [] && (
+                {datas.projetFinance != [] && (
                     <BestSeller
-                        datas={datas.nouveau}
-                        title={"Recevez notre newsletter !"}
+                        datas={datas.projetFinance}
+                        title={"Les projets financés !"}
                     />
                 )}
             </div>

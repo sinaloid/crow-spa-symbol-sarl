@@ -32,6 +32,7 @@ import PaiementFailed from "./components/client/body/contents/PaiementFailed";
 import PaiementSuccess from "./components/client/body/contents/PaiementSuccess";
 import CheckoutMobile from "./components/client/CheckoutMobile";
 import Contreparties from "./components/client/body/contents/Contreparties";
+import ProjetConfig from "./components/profile/includes/ProjetConfig";
 
 const notFound = <NotFound />
 const appRoutes = [
@@ -99,6 +100,7 @@ const dashboardProduitRoutes = [
   { path: url.dashboard_produit_liste, element: <ProductList/> },
   { path: url.dashboard_produit_categorie, element: <ProductFormCategorie /> },
   { path: url.dashboard_produit_ajout, element: <ProductForm /> },
+  { path: url.dashboard_produit_config, element: <ProjetConfig /> },
   { path: url.no_found, element: notFound },
 
 ]

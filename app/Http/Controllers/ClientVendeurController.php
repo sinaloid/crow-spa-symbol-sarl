@@ -53,7 +53,7 @@ class ClientVendeurController extends Controller
          }
     }
 
-    public function getAcheteur()
+    public function getInvestisseur()
     {
         try {
             $datas = User::where('type',0)->orderBy('created_at', 'DESC')->get();
@@ -66,6 +66,7 @@ class ClientVendeurController extends Controller
                     "email" => $data->email,
                     "numero" => $data->numero,
                     "type" => $data->type,
+                    "status" => $data->status,
                     "commune" => $data->commune->nom_commune,
                     "image" => $data->image,
                 ]);
@@ -83,7 +84,7 @@ class ClientVendeurController extends Controller
          }
     }
 
-    public function getVendeur()
+    public function getPromoteur()
     {
         try {
             $datas = User::where('type',1)->orderBy('created_at', 'DESC')->get();
@@ -96,6 +97,7 @@ class ClientVendeurController extends Controller
                     "email" => $data->email,
                     "numero" => $data->numero,
                     "type" => $data->type,
+                    "status" => $data->status,
                     "commune" => $data->commune->nom_commune,
                     "image" => $data->image,
                 ]);
@@ -121,6 +123,7 @@ class ClientVendeurController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request['slug'] = $this->generateRandomString();
         if($request['type'] == 2){
             $request['type'] = 0;
@@ -141,13 +144,15 @@ class ClientVendeurController extends Controller
             try {
                 if(Auth::user()->type == 2){
                     $data = User::create($request->toArray());
+                //dd($request->all());
+
                     $userCompteur = Compteur::get()->first();
                     if(isset($userCompteur)){
                         $userCompteur->nombre_user++;
                         if($data->type == 0){
-                            $userCompteur->nombre_acheteur++;
+                            $userCompteur->nombre_investisseur++;
                         }else{
-                            $userCompteur->nombre_vendeur++;
+                            $userCompteur->nombre_promoteur++;
                         }
                         $userCompteur->save();
                     }
@@ -307,7 +312,7 @@ class ClientVendeurController extends Controller
                 'commune_id' => 'required|integer',
                 'password' => 'nullable|string|min:8',
                 'type' => 'required|integer',
-                'image' => 'nullable|string|max:255',
+                //'image' => 'nullable|string|max:255',
             ];
         }
         return [
@@ -317,7 +322,7 @@ class ClientVendeurController extends Controller
             'commune_id' => 'required|integer',
             'password' => 'nullable|string|min:8',
             'type' => 'required|integer',
-            'image' => 'nullable|string|max:255',
+            //'image' => 'nullable|string|max:255',
         ];
     }
 }

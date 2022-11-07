@@ -19,6 +19,7 @@ const url = {
     'dashboard_commandes': 'commandes',
     'dashboard_produit': 'produit',  //pour la redirection
     'dashboard_produit_': 'produit/*',
+    'dashboard_produit_config': 'config',
     'dashboard_produit_liste': 'liste',
     'dashboard_produit_categorie': 'categorie',
     'dashboard_produit_ajout': 'prdt',

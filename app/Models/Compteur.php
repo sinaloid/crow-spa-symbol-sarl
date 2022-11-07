@@ -11,15 +11,13 @@ class Compteur extends Model
 
     protected $fillable = [
         'nombre_user',
-        'nombre_commande',
-        'nombre_livraison_teminer',
-        'nombre_livraison_en_cours',
+        'nombre_invest',
+        'nombre_financement_teminer',
+        'nombre_financement_en_cours',
         'nombre_categorie',
-        'nombre_produit',
-        'nombre_acheteur',
-        'nombre_vendeur',
+        'nombre_projet',
+        'nombre_investisseur',
+        'nombre_promoteur',
         'nombre_administrateur',
-        'total_vente',
-        'total_depense'
     ];
 }

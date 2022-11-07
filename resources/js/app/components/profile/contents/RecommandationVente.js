@@ -16,7 +16,7 @@ const RecommandationVente = () => {
     const [datas, setDatas] = useState([]);
     useEffect(() => {
         apiClient
-            .get("meilleureVR", {
+            .get("projetVR", {
                 headers: { Authorization: `Bearer ${user.token}` },
             })
             .then((res) => {
@@ -40,9 +40,9 @@ const RecommandationVente = () => {
            
         apiClient
             .post(
-                "meilleureVR",
+                "projetVR",
                 {
-                    product_slug: product,
+                    projet_slug: product,
                     type: type,
                 },
                 {
@@ -70,9 +70,9 @@ const RecommandationVente = () => {
 
         apiClient
             .put(
-                `meilleureVR/${editeSlug}`,
+                `projetVR/${editeSlug}`,
                 {
-                    product_slug: product,
+                    projet_slug: product,
                     type: type,
                 },
                 {
@@ -102,7 +102,7 @@ const RecommandationVente = () => {
     };
     const onDelete = (slug) => {
         apiClient
-            .delete(`meilleureVR/${slug}`, {
+            .delete(`projetVR/${slug}`, {
                 headers: { Authorization: `Bearer ${user.token}` },
             })
             .then((res) => {
@@ -122,7 +122,7 @@ const RecommandationVente = () => {
         <>
             <ReactToastify />
             <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 className="h2">Meilleures ventes et recommandations</h1>
+                <h1 className="h2">Validation et Recommandations</h1>
             </div>
 
             <div className="container mt-3 p-0 d-flex position-relative">
@@ -158,14 +158,14 @@ const RecommandationVente = () => {
                                     htmlFor="validationCustom01"
                                     className="form-label"
                                 >
-                                    Produit
+                                    Projet
                                 </label>
                                 <select
                                     className="form-select"
                                     value={product}
                                     onChange={(e)=>{setProduct(e.target.value)}}
                                     >
-                                    <option>Sélectionnez le produit</option>
+                                    <option>Sélectionnez le projet</option>
                                     {
                                         listProduct.map((product, idx)=>{
                                             return(
@@ -187,8 +187,8 @@ const RecommandationVente = () => {
                                     value={type}
                                     onChange={(e) =>{setType(e.target.value)}}>
                                     <option>Sélectionnez le type</option>
-                                    <option value="Meilleure vente">Meilleure vente</option>
-                                    <option value="Produit recommandé">Produit recommandé</option>
+                                    <option value="Projet à la une">Projet à la une</option>
+                                    <option value="Projet financé">Projet financé</option>
                                 </select>
                             </div>
                             
@@ -228,14 +228,14 @@ const RecommandationVente = () => {
                                     htmlFor="validationCustom01"
                                     className="form-label"
                                 >
-                                    Produit
+                                    Projet
                                 </label>
                                 <select
                                     className="form-select"
                                     value={product}
                                     onChange={(e)=>{setProduct(e.target.value)}}
                                     >
-                                    <option>Sélectionnez le produit</option>
+                                    <option>Sélectionnez le projet</option>
                                     {
                                         listProduct.map((product, idx)=>{
                                             return(
@@ -258,8 +258,8 @@ const RecommandationVente = () => {
                                     onChange={(e)=>{setType(e.target.value)}}
                                     >
                                     <option>Sélectionnez le type</option>
-                                    <option value="Meilleure vente">Meilleure vente</option>
-                                    <option value="Produit recommandé">Produit recommandé</option>
+                                    <option value="Projet à la une">Projet à la une</option>
+                                    <option value="Projet financé">Projet financé</option>
                                 </select>
                             </div>
                             
@@ -283,7 +283,7 @@ const RecommandationVente = () => {
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Produit</th>
+                            <th scope="col">Projet</th>
                             <th scope="col">Type</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -293,7 +293,7 @@ const RecommandationVente = () => {
                             return (
                                 <tr key={idx}>
                                     <td>{idx+1}</td>
-                                    <td>{data.product_nom}</td>
+                                    <td>{data.projet_nom}</td>
                                     <td>{data.type}</td>
                                     <td>
                                         <ButtonAction slug={data.id} dataEdite={data} setDataEdite={setDataEdite} onDelete={onDelete} />

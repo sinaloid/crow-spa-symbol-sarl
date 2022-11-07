@@ -59,8 +59,8 @@ const HomeProduitListCarousel = ({ datas, title }) => {
                         nav
                         {...options}
                     >
-                        {[...Array(11).keys()].map((data, idx) => {
-                         //datas.map((data, idx) => {
+                        {//[...Array(11).keys()].map((data, idx) => {
+                         datas.map((data, idx) => {
                             return (
                                 <ProductCard key={idx} idx={idx} data={data} />
                             );

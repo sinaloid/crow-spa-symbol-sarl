@@ -1,9 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import url from "../../../url";
 
-const ButtonAction = ({ onDelete, slug, dataEdite, setDataEdite }) => {
+const ButtonAction = ({
+    onDelete,
+    slug,
+    dataEdite,
+    setDataEdite,
+    eye = "",
+}) => {
     return (
         <>
+            {eye != "" ? (
+                <Link to={'/profile/produit/config'} className="text-success mx-2">
+                    <i class="fa-solid fa-eye"></i>
+                </Link>
+            ) : (
+                ""
+            )}
             <Link
                 to="#"
                 className="text-success mx-2"
@@ -42,8 +56,9 @@ const ButtonAction = ({ onDelete, slug, dataEdite, setDataEdite }) => {
                         <div className="modal-body">
                             <span>
                                 Attention vous sur le point de supprimer des
-                                données ! 
-                            </span><br/>
+                                données !
+                            </span>
+                            <br />
                             <span>Voulez vous continuer ?</span>
                         </div>
 

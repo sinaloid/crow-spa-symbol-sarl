@@ -268,6 +268,7 @@ const Dashboard = () => {
                                                 </span>
                                             </Link>
                                         </li>
+                                        */}
                                         <li className="nav-item">
                                             <Link
                                                 className="nav-link"
@@ -282,11 +283,10 @@ const Dashboard = () => {
                                                     data-bs-toggle="collapse"
                                                     data-bs-target=".collapse.show"
                                                 >
-                                                    Meilleures V&R
+                                                    V&R
                                                 </span>
                                             </Link>
-                                        </li>*/}
-                                        
+                                        </li>
                                         
                                         <li className="nav-item dropdown">
                                             <Link

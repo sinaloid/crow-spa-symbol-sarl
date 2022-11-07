@@ -40,7 +40,7 @@ const CustomerForm = () => {
     return (
         <>
             <div className="container mt-3 d-flex position-relative">
-                <h2 className="mt-2">Acheteurs</h2>
+                <h2 className="mt-2">Investisseurs</h2>
                 <button
                     type="button"
                     className="btn btn-afdefis position-absolute end-0 mx-3"
@@ -52,7 +52,7 @@ const CustomerForm = () => {
             </div>
 
             <div className="card py-2 shadow-sm table-responsive">
-                <CustomerTable clientType={"acheteur"} />
+                <CustomerTable clientType={"investisseur"} />
             </div>
         </>
     );
