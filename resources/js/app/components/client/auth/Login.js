@@ -9,8 +9,8 @@ import url from "../../../url";
 import Loading from "../../Loading";
 
 const Login = () => {
-    const [email, setEmail] = useState("ounoid@gmail.com");
-    const [password, setPassword] = useState("12345678");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
     const authCtx = useContext(AppContext);

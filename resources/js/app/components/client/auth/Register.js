@@ -9,10 +9,10 @@ import Loading from "../../Loading";
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 const Register = () => {
-    const [name, setName] = useState("Dionou Sinali");
-    const [numero, setNumero] = useState("75638203");
-    const [email, setEmail] = useState("Ounoid@gmail.com");
-    const [password, setPassword] = useState("12345678");
+    const [name, setName] = useState("");
+    const [numero, setNumero] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [status,setStatus] = useState("");
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState("");
