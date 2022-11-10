@@ -4,6 +4,8 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import ProductCard from "./includes/ProductCard";
 import { setProduit } from "../../../context/action";
+import { Link } from "react-router-dom";
+import url from "../../../url";
 
 const BestSeller = ({datas, title}) => {
     const options = {
@@ -64,13 +66,10 @@ const BestSeller = ({datas, title}) => {
             <div className="d-flex flex-wrap justify-content-between align-items-center pt-1 border-bottom pb-4 mb-4">
                 <h2 className="h3 mb-0 pt-3 me-3 title-1">{title}</h2>
                 <div className="row pt-3">
-                    <a
-                        className="btn btn-outline-accent btn-sm"
-                        href="grocery-catalog.html"
-                    >
+                    <Link to={url.produits} className="btn btn-outline-accent btn-sm">
                         Plus de projets
                         <i className="ci-arrow-right ms-1 me-n1"></i>
-                    </a>
+                    </Link>
                 </div>
             </div>
 

@@ -48,7 +48,7 @@ const Home = () => {
                         Pionnier du financement participatif, AfricaDefis 
                         est la plateforme d'investissement dans des projets d'avenir à forte rentabilité
                     </p>
-                    <Link to={"profile/tdb/"+url.dashboard_produit +"/" +url.dashboard_produit_liste} className="btn btn-afdefis-secondary mb-3 me-3">Lancer mon projet</Link>
+                    <Link to={"profile/"+url.dashboard_produit +"/" +url.dashboard_produit_ajout} className="btn btn-afdefis-secondary mb-3 me-3">Lancer mon projet</Link>
                     <Link to={url.produits} className="btn btn-afdefis mb-3 me-3">Découvrir les projets</Link>
                 </div>
                 <div className="col-12 col-lg-7 order-1 order-lg-2 p-0">
@@ -78,7 +78,7 @@ const Home = () => {
                 {datas.recommandation != [] && (
                     <HomeProduitList
                         datas={datas.recommandation}
-                        title={"Découvrir le manifesto Ulule"}
+                        title={"Découvrir"}
                     />
                 )}
                 {datas.projetFinance != [] && (
@@ -88,7 +88,7 @@ const Home = () => {
                     />
                 )}
             </div>
-            <div className="row bg-white">
+            <div className="row bg-white p-3">
                     <div className="col-12 col-md-6">
                         <h2 className="title-2 mt-2">QU'EST CE QUE AFRICADEFIS ?</h2>
                         <p className="">

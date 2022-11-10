@@ -302,9 +302,6 @@ const Checkout = () => {
                                                                 PROJET(S)
                                                             </th>
                                                             <th className="text-right">
-                                                                DESCRIPTION
-                                                            </th>
-                                                            <th className="text-right">
                                                                 INVESTISSEMENT(XOF)
                                                             </th>
                                                             <th className="text-right">

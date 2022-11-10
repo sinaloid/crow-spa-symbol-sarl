@@ -169,16 +169,8 @@ const ProductDetail = () => {
                                 </div>
                             </div>
                             <div className="col-12 d-flex">
-                                <div className="d-inline-block me-2">
-                                    <img
-                                        className="rounded-circle m-0 avatar-sm-table circle"
-                                       
-                                        src={`https://source.unsplash.com/random/800x800/?product=1`}
-                                        alt=""
-                                    />
-                                </div>
-                                <div className="d-inline-block" style={{height:'72px'}}>
-                                    <div className="mx-1 text-bold">{data.promoteur}</div>
+                                
+                                <div className="d-inline-block">
                                     <div>
                                         <div className="d-inline-block mx-1">
                                             <i class="fa-solid fa-location-dot"></i>{" "}
@@ -547,68 +539,6 @@ const ProductDetail = () => {
                                             velit labore! Accusamus, itaque
                                             impedit.
                                         </p>
-                                    </li>
-                                    <li>
-                                        <span
-                                            className="text-bold"
-                                            style={{ fontSize: "1rem" }}
-                                        >
-                                            Le(s) porteur(s) de projet
-                                        </span>
-                                        <div className="container-fluid">
-                                            <div className="row">
-                                                <div className="col-12 col-md-6">
-                                                    <p className="text-justify">
-                                                        blanditiis ipsa rerum,
-                                                        accusantium quam
-                                                        voluptatum cumque
-                                                        placeat odio velit
-                                                        labore! Accusamus,
-                                                        itaque impedit. Lorem
-                                                        ipsum dolor sit amet
-                                                        consectetur adipisicing
-                                                        elit. Adipisci quaerat
-                                                        architecto illo quis,
-                                                        eveniet atque officia
-                                                        blanditiis ipsa rerum,
-                                                        accusantium quam
-                                                        voluptatum cumque
-                                                        placeat odio velit
-                                                        labore! Accusamus,
-                                                        itaque impedit. Lorem
-                                                        ipsum dolor sit amet
-                                                        consectetur adipisicing
-                                                        elit. Adipisci quaerat
-                                                        architecto illo quis,
-                                                        eveniet atque officia
-                                                        blanditiis ipsa rerum,
-                                                        accusantium quam
-                                                        voluptatum cumque
-                                                        placeat odio velit
-                                                        labore! Accusamus,
-                                                        itaque impedit. Lorem
-                                                        ipsum dolor sit amet
-                                                        consectetur adipisicing
-                                                        elit. Adipisci quaerat
-                                                        architecto illo quis,
-                                                        eveniet atque officia
-                                                        blanditiis ipsa rerum,
-                                                        accusantium quam
-                                                        voluptatum cumque
-                                                        placeat odio velit
-                                                        labore! Accusamus,
-                                                        itaque impedit.
-                                                    </p>
-                                                </div>
-                                                <div className="col-12 col-md-6">
-                                                    <img
-                                                        className="w-100"
-                                                        src="https://source.unsplash.com/random/800x600/?product=1"
-                                                        alt=""
-                                                    />
-                                                </div>
-                                            </div>
-                                        </div>
                                     </li>
                                 </ul>
                             </div>

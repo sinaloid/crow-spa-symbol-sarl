@@ -69,7 +69,7 @@ const Brand = ({ datas = [] }) => {
                           of type and scrambled it 
                           </p>
                           <div>
-                            <Link to={"profile/tdb/"+url.dashboard_produit +"/" +url.dashboard_produit_liste} className="btn btn-afdefis-secondary mb-3 me-3">Lancer mon projet</Link>
+                            <Link to={"profile/"+url.dashboard_produit +"/" +url.dashboard_produit_ajout} className="btn btn-afdefis-secondary mb-3 me-3">Lancer mon projet</Link>
                             <Link to={url.produits} className="btn btn-afdefis mb-3 me-3">Découvrir les projets</Link>
                           </div>
                         </div>
