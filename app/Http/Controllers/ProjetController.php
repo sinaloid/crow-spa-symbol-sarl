@@ -19,7 +19,7 @@ class ProjetController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['api.can.edite'],['except' => ['index', 'show', 'getProduitAndCategorie', 'all']]);
+        $this->middleware(['api.can.edite'],['except' => ['index', 'show', 'getProjetAndCategorie', 'all']]);
     }
     /**
      * Display a listing of the resource.

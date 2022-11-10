@@ -137,7 +137,7 @@ const TdB = () => {
                         </svg>
                     }
                     title="Capital investi"
-                    data={"100 000FCFA"} 
+                    data={"0 FCFA"} 
                 />
             </div>
             <div className="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-1 g-3 py-4">
