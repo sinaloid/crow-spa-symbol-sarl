@@ -173,36 +173,36 @@ const ProductDetail = () => {
                                 <div className="d-inline-block">
                                     <div>
                                         <div className="d-inline-block mx-1">
-                                            <i class="fa-solid fa-location-dot"></i>{" "}
+                                            <i className="fa-solid fa-location-dot"></i>{" "}
                                             Bobo Dioulasso
                                         </div>{" "}
                                         <div className="d-inline-block mx-1">
-                                            <i class="fa-sharp fa-solid fa-clipboard-list"></i>{" "}
+                                            <i className="fa-sharp fa-solid fa-clipboard-list"></i>{" "}
                                             {" " + data.categorie}
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className="col-12">
-                                <div class="modal fade" id="myModal">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">
+                                <div className="modal fade" id="myModal">
+                                    <div className="modal-dialog modal-dialog-centered">
+                                        <div className="modal-content">
+                                            <div className="modal-header">
+                                                <h4 className="modal-title">
                                                     Partager le projet sur les
                                                     réseaux sociaux
                                                 </h4>
                                                 <button
                                                     type="button"
-                                                    class="btn-close"
+                                                    className="btn-close"
                                                     data-bs-dismiss="modal"
                                                 ></button>
                                             </div>
 
-                                            <div class="modal-body">
+                                            <div className="modal-body">
                                                 <span className="d-inline-block me-3 my-1">
                                                     <i
-                                                        class="fa-brands fa-facebook fa-3x"
+                                                        className="fa-brands fa-facebook fa-3x"
                                                         title="Partager sur Facebook"
                                                         type="button"
                                                         style={{
@@ -218,17 +218,17 @@ const ProductDetail = () => {
                                                                 window.open(
                                                                     "fb-messenger://share/?" +
                                                                         SITE_URL +
-                                                                        "projet" +
-                                                                        "slug",
+                                                                        "/projet/" +
+                                                                        id,
                                                                     "facebook-share-dialog",
                                                                     "width=800,height=600"
                                                                 );
                                                             } else {
                                                                 window.open(
                                                                     "https://www.facebook.com/sharer/sharer.php?u=" +
-                                                                        SITE_URL +
-                                                                        "projet" +
-                                                                        "slug",
+                                                                    SITE_URL +
+                                                                    "/projet/" +
+                                                                    id,
                                                                     "facebook-share-dialog",
                                                                     "width=800,height=600"
                                                                 );
@@ -239,7 +239,7 @@ const ProductDetail = () => {
                                                 {"   "}
                                                 <span className="d-inline-block me-3 my-1">
                                                     <i
-                                                        class="fa-brands fa-telegram fa-3x"
+                                                        className="fa-brands fa-telegram fa-3x"
                                                         title="Partager sur Telegram"
                                                         type="button"
                                                         style={{
@@ -251,8 +251,8 @@ const ProductDetail = () => {
                                                                 "https://t.me/share/url?url=" +
                                                                     encodeURIComponent(
                                                                         SITE_URL +
-                                                                            "/projet/" +
-                                                                            "slug"
+                                                                        "/projet/" +
+                                                                        id,
                                                                     ) +
                                                                     "&text=" +
                                                                     encodeURIComponent(
@@ -267,7 +267,7 @@ const ProductDetail = () => {
                                                 {"   "}
                                                 <span className="d-inline-block me-3 my-1">
                                                     <i
-                                                        class="fa-brands fa-twitter fa-3x"
+                                                        className="fa-brands fa-twitter fa-3x"
                                                         title="Partager sur Twitter"
                                                         type="button"
                                                         style={{
@@ -277,9 +277,9 @@ const ProductDetail = () => {
                                                             e.preventDefault();
                                                             window.open(
                                                                 "https://twitter.com/intent/tweet?url=" +
-                                                                    SITE_URL,
-                                                                "" +
-                                                                    document.title,
+                                                                SITE_URL +
+                                                                "/projet/" +
+                                                                id,
                                                                 "width=800,height=600"
                                                             );
                                                         }}
@@ -288,7 +288,7 @@ const ProductDetail = () => {
                                                 {"   "}
                                                 <span className="d-inline-block me-3 my-1">
                                                     <i
-                                                        class="fa-brands fa-linkedin fa-3x"
+                                                        className="fa-brands fa-linkedin fa-3x"
                                                         title="Partager sur Linkedin"
                                                         type="button"
                                                         style={{
@@ -300,8 +300,8 @@ const ProductDetail = () => {
                                                                 "https://www.linkedin.com/shareArticle?mini=true&summary=africadefis&title=Projet Crowfunding&url=" +
                                                                     encodeURIComponent(
                                                                         SITE_URL +
-                                                                            "/projet/" +
-                                                                            "slug"
+                                                                        "/projet/" +
+                                                                        id,
                                                                     ),
                                                                 "name",
                                                                 "width=800,height=600"
@@ -312,7 +312,7 @@ const ProductDetail = () => {
                                                 {"   "}
                                                 <span className="d-inline-block me-3 my-1">
                                                     <i
-                                                        class="fa-brands fa-whatsapp fa-3x"
+                                                        className="fa-brands fa-whatsapp fa-3x"
                                                         title="Partager sur Whatsapp"
                                                         type="button"
                                                         style={{
@@ -329,8 +329,8 @@ const ProductDetail = () => {
                                                                     "whatsapp://send?text=" +
                                                                         encodeURIComponent(
                                                                             SITE_URL +
-                                                                                "/projet/" +
-                                                                                "slug"
+                                                                        "/projet/" +
+                                                                        id,
                                                                         ),
                                                                     "name",
                                                                     "width=800,height=600"
@@ -340,8 +340,8 @@ const ProductDetail = () => {
                                                                     "https://web.whatsapp.com/send?text=" +
                                                                         encodeURIComponent(
                                                                             SITE_URL +
-                                                                                "/projet/" +
-                                                                                "slug"
+                                                                        "/projet/" +
+                                                                        id,
                                                                         ),
                                                                     "name",
                                                                     "width=800,height=600"
@@ -353,7 +353,7 @@ const ProductDetail = () => {
                                                 {"   "}
                                                 <span className="d-inline-block me-3 my-1">
                                                     <i
-                                                        class="fa-solid fa-envelope fa-3x"
+                                                        className="fa-solid fa-envelope fa-3x"
                                                         title="Partager par Email"
                                                         type="button"
                                                         style={{
@@ -363,9 +363,9 @@ const ProductDetail = () => {
                                                             e.preventDefault();
                                                             window.open(
                                                                 "mailto:?subject=Projet Crowfunding&body=" +
-                                                                    SITE_URL +
-                                                                    "/projet/" +
-                                                                    "slug"
+                                                                SITE_URL +
+                                                                "/projet/" +
+                                                                id,
                                                             );
                                                         }}
                                                     ></i>
@@ -373,7 +373,7 @@ const ProductDetail = () => {
                                                 {"   "}
                                                 <span className="d-inline-block me-3 my-1">
                                                     <i
-                                                        class="fa-solid fa-link fa-3x"
+                                                        className="fa-solid fa-link fa-3x"
                                                         title="Copier le lien"
                                                         type="button"
                                                         data-bs-dismiss="modal"
@@ -384,16 +384,17 @@ const ProductDetail = () => {
                                                             e.preventDefault();
                                                             navigator.clipboard.writeText(
                                                                 SITE_URL +
-                                                                    "/projet/slug"
+                                                                        "/projet/" +
+                                                                        id,
                                                             );
                                                         }}
                                                     ></i>
                                                 </span>
                                             </div>
-                                            <div class="modal-footer">
+                                            <div className="modal-footer">
                                                 <button
                                                     type="button"
-                                                    class="btn btn-afdefis"
+                                                    className="btn btn-afdefis"
                                                     data-bs-dismiss="modal"
                                                 >
                                                     Fermer

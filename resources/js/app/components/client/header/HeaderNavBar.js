@@ -146,7 +146,7 @@ const HeaderNavBar = () => {
                                         data-bs-toggle="collapse"
                                         data-bs-target=".navbar-collapse.show"
                                     >
-                                        A propos
+                                        À propos
                                     </span>
                                 </Link>
                             </li>
